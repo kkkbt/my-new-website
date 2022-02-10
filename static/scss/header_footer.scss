@@ -1,0 +1,53 @@
+// header
+#navbarSupportedContent {
+  .navbar-nav {
+    margin-right: 0;
+
+    .nav-item {
+      float: right;
+    }
+  }
+}
+
+
+// content
+.title-img {
+  max-width: 100%;
+  max-height: 92vh;
+  min-height: 90vh;
+  margin: auto;
+  object-fit: cover;
+  display: grid;
+}
+
+
+// footer
+footer {
+  .nav {
+    padding: 5% 0 5% 15%;
+
+    .nav-item {
+      a {
+        //color: white;
+      }
+
+      .btn {
+        margin: 5% 0 0 5%;
+
+      }
+    }
+
+
+  }
+
+  .copy-notice {
+    display: inline-block;
+    padding: 0 0 2% 2%;
+    color: white;
+    text-align: right;
+
+    p {
+      color: white;
+    }
+  }
+}

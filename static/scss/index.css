@@ -1,0 +1,18 @@
+body {
+  background-color: black;
+}
+body #carouselExampleInterval .carousel-item {
+  height: 100%;
+  display: grid;
+}
+body #carouselExampleInterval .carousel-caption h5 {
+  font-size: 3em;
+  text-shadow: -2px 0 #000, 0px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+body #carouselExampleInterval .carousel-caption a {
+  font-size: 2em;
+  color: white;
+  text-shadow: -1px 0 #000, 0px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+}
+
+/*# sourceMappingURL=index.css.map */

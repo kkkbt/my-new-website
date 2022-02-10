@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+$h5fontsize: 1px;
+$afontsize: 0.5px;
+
+
+@mixin font_shade($shade) {
+  text-shadow: -$shade -$shade 0 #000,
+  $shade -$shade 0 #000,
+  -$shade $shade 0 #000,
+  $shade $shade 0 #000;
+}
+
+
+body {
+  background-color: black;
+
+  #carouselExampleInterval {
+    .carousel-item {
+      height: 100%;
+      display: grid;
+    }
+
+    .carousel-caption {
+
+      h5 {
+        font-size: 3em;
+        @include font_shade(1px)
+      }
+
+      a {
+        font-size: 2em;
+        color: white;
+        @include font_shade(0.5px)
+      }
+    }
+  }
+}

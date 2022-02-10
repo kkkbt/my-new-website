@@ -1,0 +1,33 @@
+#navbarSupportedContent .navbar-nav {
+  margin-right: 0;
+}
+#navbarSupportedContent .navbar-nav .nav-item {
+  float: right;
+}
+
+.title-img {
+  max-width: 100%;
+  max-height: 92vh;
+  min-height: 90vh;
+  margin: auto;
+  object-fit: cover;
+  display: grid;
+}
+
+footer .nav {
+  padding: 5% 0 5% 15%;
+}
+footer .nav .nav-item .btn {
+  margin: 5% 0 0 5%;
+}
+footer .copy-notice {
+  display: inline-block;
+  padding: 0 0 2% 2%;
+  color: white;
+  text-align: right;
+}
+footer .copy-notice p {
+  color: white;
+}
+
+/*# sourceMappingURL=header_footer.css.map */
