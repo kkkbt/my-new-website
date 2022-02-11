@@ -14,16 +14,9 @@ body .title-screens h5 {
   border-radius: 0.5em;
   background: black;
 }
-body .title-screens a {
+body .title-screens button {
   font-size: 1.5em;
   color: black;
-  height: 1.4em;
-  width: em;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 0.2em;
-  background: white;
-  text-decoration: none;
 }
 
 /*# sourceMappingURL=index.css.map */

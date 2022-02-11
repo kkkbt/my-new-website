@@ -35,14 +35,9 @@ body {
       background: black;
     }
 
-    a {
+    button {
       font-size: 1.5em;
       color: black;
-      height: 1.4em;
-      @include tocenter(em);
-      border-radius: 0.2em;
-      background: white;
-      text-decoration: none;
     }
   }
 }

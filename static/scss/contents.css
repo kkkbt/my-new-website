@@ -4,10 +4,25 @@ body .title-screens {
 }
 body .title-screens h5 {
   position: absolute;
-  bottom: 9%;
+  bottom: 6.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+}
+body .container {
+  padding-bottom: 2em;
+}
+body .container .content-table {
+  margin-top: 2em;
+  background-color: white;
+}
+body .container .content {
+  margin-top: 2em;
+  background-color: white;
+}
+body .container .contact-icons {
+  margin-top: 2em;
+  text-align: center;
 }
 
 /*# sourceMappingURL=contents.css.map */

@@ -17,11 +17,30 @@ body {
 
     h5 {
       position: absolute;
-      bottom: 9%;
+      bottom: 6.5%;
       left: 50%;
       transform: translate(-50%, -50%);
       color: white;
-
     }
   }
+
+  .container {
+    padding-bottom: 2em;
+
+    .content-table {
+      margin-top: 2em;
+      background-color: white;
+    }
+
+    .content {
+      margin-top: 2em;
+      background-color: white;
+    }
+
+    .contact-icons {
+      margin-top: 2em;
+      text-align: center;
+    }
+  }
+
 }

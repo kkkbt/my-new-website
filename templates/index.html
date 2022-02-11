@@ -7,20 +7,23 @@
 
 <!-- Slide show -->
 <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#profile_pic" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
         {% for i in range(contents[1:]|length): %}
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{i+1}}" aria-label="Slide {{i+1}}"></button>
+        <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="{{i+1}}"></button>
         {% endfor %}
     </div>
 
     <div class="carousel-inner">
         <div id="profile_pic" class="carousel-item active title-screens" data-bs-interval="5000">
-            <img src="../static/img/toppage/profile.jpg" class="d-block w-100 title-img">
+            <img src="../static/img/toppage/{{contents[0]}}.jpg" class="d-block w-100 title-img">
             <div class="carousel-caption center-block">
-                <h5>Profile</h5>
-                <p><a href="{{ url_for(contents[0]) }}">More</a></p>
+                <h5>{{ contents[0].title() }}</h5>
+                <button type="button" class="btn btn-secondary" onclick="location.href='{{ url_for(contents[0]) }}'">
+                    More
+                </button>
             </div>
         </div>
         {% for content in contents[1:]: %}
@@ -28,7 +31,9 @@
             <img src="../static/img/toppage/{{ content }}.jpg" class="d-block w-100 title-img">
             <div class="carousel-caption d-md-block">
                 <h5>{{ content.title() }}</h5>
-                <p><a href="{{ url_for(content) }}">More</a></p>
+                <button type="button" class="btn btn-secondary" onclick="location.href='{{ url_for(content) }}'">
+                    More
+                </button>
             </div>
         </div>
         {% endfor %}
