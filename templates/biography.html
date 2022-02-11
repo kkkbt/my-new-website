@@ -1,9 +1,13 @@
-{% include "head.html" %}
+{% include "header_footer/head.html" %}
 <!--  Link to my css  -->
 <link rel="stylesheet" href="../static/scss/index.css">
+<link rel="stylesheet" href="../static/scss/contents.css">
 
-{% include "header.html" %}
 
-<img src="../static/img/toppage/road.jpg" class="d-block w-100 title-img" alt="">
+{% include "header_footer/header.html" %}
 
-{% include "footer.html" %}
+{% with title=title %}
+    {% include "contents/title-screen.html" %}
+{% endwith %}
+
+{% include "header_footer/footer.html" %}

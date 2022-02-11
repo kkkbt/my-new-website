@@ -1,8 +1,9 @@
-{% include "head.html" %}
+{% include "header_footer/head.html" %}
 <!--  Link to my css  -->
 <link rel="stylesheet" href="../static/scss/index.css">
 
-{% include "header.html" %}
+
+{% include "header_footer/header.html" %}
 
 <!-- Slide show -->
 <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -16,41 +17,23 @@
     </div>
 
     <div class="carousel-inner">
-        <div id="profile_pic" class="carousel-item active" data-bs-interval="5000">
-            <img src="../static/img/toppage/myself.jpg" class="d-block w-100 title-img">
+        <div id="profile_pic" class="carousel-item active title-screens" data-bs-interval="5000">
+            <img src="../static/img/toppage/profile.jpg" class="d-block w-100 title-img">
             <div class="carousel-caption center-block">
                 <h5>Profile</h5>
-                <p><a href="{{ url_for('profile') }}">More</a></p>
+                <p><a href="{{ url_for(contents[0]) }}">More</a></p>
             </div>
         </div>
-        <div class="carousel-item" data-bs-interval="5000">
-            <img src="../static/img/toppage/library.jpg" class="d-block w-100 title-img">
+        {% for content in contents[1:]: %}
+        <div class="carousel-item title-screens" data-bs-interval="5000">
+            <img src="../static/img/toppage/{{ content }}.jpg" class="d-block w-100 title-img">
             <div class="carousel-caption d-md-block">
-                <h5>Library</h5>
-                <p><a href="{{ url_for('library') }}">More</a></p>
+                <h5>{{ content.title() }}</h5>
+                <p><a href="{{ url_for(content) }}">More</a></p>
             </div>
         </div>
-        <div class="carousel-item" data-bs-interval="5000">
-            <img src="../static/img/toppage/road.png" class="d-block w-100 title-img">
-            <div class="carousel-caption d-md-block">
-                <h5>Biography</h5>
-                <p><a href="{{ url_for('biography') }}">More</a></p>
-            </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="5000">
-            <img src="../static/img/toppage/stock.jpg" class="d-block w-100 title-img">
-            <div class="carousel-caption d-md-block">
-                <h5>Investment</h5>
-                <p><a href="{{ url_for('investment') }}">More</a></p>
-            </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="5000">
-            <img src="../static/img/toppage/contact.jpg" class="d-block w-100 title-img">
-            <div class="carousel-caption d-md-block">
-                <h5>Contact</h5>
-                <p><a href="{{ url_for('contact') }}">More</a></p>
-            </div>
-        </div>
+        {% endfor %}
+
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -63,4 +46,4 @@
     </button>
 </div>
 
-{% include "footer.html" %}
+{% include "header_footer/footer.html" %}

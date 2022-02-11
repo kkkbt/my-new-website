@@ -4,13 +4,11 @@ $h5fontsize: 1px;
 $afontsize: 0.5px;
 
 
-@mixin font_shade($shade) {
-  text-shadow: -$shade -$shade 0 #000,
-  $shade -$shade 0 #000,
-  -$shade $shade 0 #000,
-  $shade $shade 0 #000;
+@mixin tocenter($wid) {
+  width: $wid;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 
 body {
   background-color: black;
@@ -23,16 +21,28 @@ body {
 
     .carousel-caption {
 
-      h5 {
-        font-size: 3em;
-        @include font_shade(1px)
-      }
+    }
+  }
 
-      a {
-        font-size: 2em;
-        color: white;
-        @include font_shade(0.5px)
-      }
+  // Specification below is common among all html files.
+
+  .title-screens {
+    h5 {
+      font-size: 3em;
+      height: 1.4em;
+      @include tocenter(6em);
+      border-radius: 0.5em;
+      background: black;
+    }
+
+    a {
+      font-size: 1.5em;
+      color: black;
+      height: 1.4em;
+      @include tocenter(em);
+      border-radius: 0.2em;
+      background: white;
+      text-decoration: none;
     }
   }
 }

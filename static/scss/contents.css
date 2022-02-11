@@ -1,0 +1,13 @@
+body .title-screens {
+  position: relative;
+  text-align: center;
+}
+body .title-screens h5 {
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+/*# sourceMappingURL=contents.css.map */
