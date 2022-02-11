@@ -11,7 +11,7 @@ print(os.getenv("SECRET_KEY"))
 
 @app.route('/')
 def home():
-    contents = ["profile", "library", "biography", "investment", "contact"]
+    contents = ["profile", "application", "library", "biography", "investment", "contact"]
     return render_template("index.html", contents=contents)
 
 
