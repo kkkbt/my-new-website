@@ -33,17 +33,16 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-
-                            <label class="form-label">タイトル</label>
-                            <div class="input-group mb-3">
-                                <input id="{{ button }}_title" type="text" class="form-control"
-                                       aria-label="Text input with checkbox">
-                            </div>
-
+                            {% for column in databases[button][1] %}
+                            <label class="form-label">{{column}}</label>
                             <div class="mb-3">
-                                <label class="form-label">説明</label>
-                                <textarea class="form-control" id="{{ button }}_description_area" rows="3"></textarea>
+                                {% if column == 'description' %}
+                                <textarea class="form-control" name="description" rows="3"></textarea>
+                                {% else %}
+                                <input type="text" class="form-control" aria-label="Text input with checkbox">
+                                {% endif %}
                             </div>
+                            {% endfor %}
 
                             <div class="mb-3">
                                 <label class="form-label">写真</label>
