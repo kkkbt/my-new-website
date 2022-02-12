@@ -14,11 +14,23 @@ body .container {
 }
 body .container .content-table {
   margin-top: 2em;
-  background-color: white;
+  background-color: #265F73;
+  border-radius: 0.5em;
+}
+body .container .content-table a {
+  color: white;
+}
+body .container .card {
+  background-color: #265F73;
+}
+body .container .card .card-title {
+  color: white;
+}
+body .container .accordion {
+  background-color: #265F73;
 }
 body .container .content {
   margin-top: 2em;
-  background-color: white;
 }
 body .container .contact-icons {
   margin-top: 2em;

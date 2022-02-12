@@ -3,6 +3,8 @@
 $h5fontsize: 1px;
 $afontsize: 0.5px;
 
+$background-color: #265F73;
+
 
 @mixin tocenter($wid) {
   width: $wid;
@@ -29,12 +31,29 @@ body {
 
     .content-table {
       margin-top: 2em;
-      background-color: white;
+      background-color: $background-color;
+      border-radius: 0.5em;
+
+      a {
+        color: white;
+      }
+    }
+
+    .card {
+      background-color: $background-color;
+
+      .card-title {
+        color: white;
+      }
+    }
+
+    .accordion {
+      background-color: $background-color;
+
     }
 
     .content {
       margin-top: 2em;
-      background-color: white;
     }
 
     .contact-icons {

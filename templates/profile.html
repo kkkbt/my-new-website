@@ -14,12 +14,12 @@
     <!-- Content here -->
     <div class="row">
         <div class="col-lg-3 col-sm-12">
-            <div class="content-table">
-                <nav class="nav flex-column">
-                    <a class="nav-link active" aria-current="page" href="#">Active</a>
-                    <a class="nav-link" href="#">Link</a>
-                    <a class="nav-link" href="#">Link</a>
-                    <a class="nav-link disabled">Disabled</a>
+            <div class="content-table secondary">
+                <nav class="nav flex-column secondary">
+                    <a class="nav-link" aria-current="page" href="">Active</a>
+                    <a class="nav-link" href="">Link</a>
+                    <a class="nav-link" href="">Link</a>
+                    <a class="nav-link">Disabled</a>
                 </nav>
             </div>
 
@@ -31,7 +31,7 @@
                     {% for card in ['application', 'biography', 'contact']: %}
 
                     {% with card=card %}
-                    {% include "contents/cards.html" %}
+                    {% include "contents/cards-for-profile.html" %}
                     {% endwith %}
 
                     {% endfor %}

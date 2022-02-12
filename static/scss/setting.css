@@ -1,0 +1,19 @@
+body .container {
+  padding-bottom: 4em;
+}
+body .container h1 {
+  color: white;
+  margin-top: 1.5em;
+}
+body .container .row {
+  text-align: center;
+}
+body .container .row .wide_button {
+  margin-top: 2em;
+  width: 90%;
+  text-align: center;
+  height: 4em;
+  font-size: 1.5em;
+}
+
+/*# sourceMappingURL=setting.css.map */
