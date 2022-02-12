@@ -1,23 +1,25 @@
 from flask import render_template
 
-from app import app, db
-from app.database import ApplicationDatabase, LibraryDatabase, BiographyDatabase, ProfileDatabase
+from app import app
+# from app import db
+# from app.database import ApplicationDatabase, LibraryDatabase, BiographyDatabase, ProfileDatabase
 
 contents = ["profile", "application", "library", "biography", "investment", "contact"]
 
 
 def databases_to_send(database_name: list, databases_data: list) -> dict:
-    all_databases = {}
-    for dn, dd in zip(database_name, databases_data):
-        try:
-            columns = db.session.query(dd).all()[0].__dict__
-            del columns["_sa_instance_state"], columns["id"]
-            columns = list(columns.keys())
-            columns.sort(reverse=True)
-        except IndexError:
-            columns = []
-        all_databases[dn] = [db.session.query(dd).all(), columns]
-    return all_databases
+    # all_databases = {}
+    # for dn, dd in zip(database_name, databases_data):
+    #     try:
+    #         columns = db.session.query(dd).all()[0].__dict__
+    #         del columns["_sa_instance_state"], columns["id"]
+    #         columns = list(columns.keys())
+    #         columns.sort(reverse=True)
+    #     except IndexError:
+    #         columns = []
+    #     all_databases[dn] = [db.session.query(dd).all(), columns]
+    # return all_databases
+    return
 
 
 @app.route('/')
@@ -27,9 +29,9 @@ def home():
 
 @app.route("/application")
 def application():
-    database_name = ["application"]
-    database_data = [ApplicationDatabase]
-    database = databases_to_send(database_name, database_data)
+    # database_name = ["application"]
+    # database_data = [ApplicationDatabase]
+    # database = databases_to_send(database_name, database_data)
     return render_template("application.html", title='application', database=database)
 
 
