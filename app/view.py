@@ -32,6 +32,7 @@ def application():
     # database_name = ["application"]
     # database_data = [ApplicationDatabase]
     # database = databases_to_send(database_name, database_data)
+    database=None
     return render_template("application.html", title='application', database=database)
 
 
