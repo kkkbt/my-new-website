@@ -25,8 +25,8 @@ def initialize_user_database():
     if db.session.query(UserDatabase).all():
         return
 
-    name = os.getenv("NAME")
-    pw = os.getenv("HASHED_PW")
+    name = os.environ.get("NAME")
+    pw = os.environ.get("HASHED_PW")
     first_user = UserDatabase(password=pw, name=name)
 
     db.session.add(first_user)
