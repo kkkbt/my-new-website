@@ -1,0 +1,28 @@
+{% include "header_footer/head.html" %}
+<!--  Link to my css  -->
+<link rel="stylesheet" href="../static/scss/index.css">
+<link rel="stylesheet" href="../static/scss/contents.css">
+
+
+{% include "header_footer/header.html" %}
+
+{% with title=title %}
+{% include "contents/title-screen.html" %}
+{% endwith %}
+
+<div class="container">
+    <!-- Content here -->
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+
+            <input type="text" class="form-control" name="name" placeholder="Name">
+            <label class="form-label">Password</label>
+
+            <input type="text" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">login</button>
+    </form>
+</div>
+
+{% include "header_footer/footer.html" %}

@@ -20,6 +20,10 @@ body .container .content-table {
 body .container .content-table a {
   color: white;
 }
+body .container .content-table .sub-nav {
+  margin-left: 1em;
+  font-size: 1em;
+}
 body .container .card {
   background-color: #265F73;
 }

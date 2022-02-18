@@ -16,26 +16,37 @@
         <div class="col-lg-3 col-sm-12">
             <div class="content-table">
                 <nav class="nav flex-column">
-                    <a class="nav-link active" aria-current="page" href="#">Active</a>
-                    <a class="nav-link" href="#">Link</a>
-                    <a class="nav-link" href="#">Link</a>
-                    <a class="nav-link disabled">Disabled</a>
+                    {% for data_kind in data: %}
+
+                    <a class="nav-link" href="#{{ data_kind }}_h5">{{data_kind}}</a>
+
+                    {% for data_title in data[data_kind]: %}
+                    <nav class="nav flex-column sub-nav">
+                        <a class="nav-link" href="#img{{ data[data_kind][data_title]['id'] }}">{{data_title}}</a>
+                    </nav>
+
+                    {% endfor %}
+                    {% endfor %}
                 </nav>
             </div>
 
         </div>
         <div class="col-lg-9 col-sm-12">
             <div class="content">
+                {% for data_kind in data: %}
+                <h5 id="{{ data_kind }}_h5">{{ data_kind }}</h5>
                 <div class="row">
 
-                    {% for card in ['application', 'biography', 'contact']: %}
+                    {% for data_title in data[data_kind]: %}
 
-                    {% with card=card %}
-                    {% include "contents/cards.html" %}
+                    {% with data_title=data_title, data=data[data_kind][data_title] %}
+                    {% include "contents/cards-for-biography.html" %}
                     {% endwith %}
 
                     {% endfor %}
+
                 </div>
+                {% endfor %}
 
             </div>
         </div>

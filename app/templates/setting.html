@@ -14,46 +14,47 @@
 
     <div class="row">
 
-        {% for button in databases: %}
+        {% for database_name in databases: %}
         <div class="col-lg-3 col-md-6 col-sm-12">
             <!-- Button trigger modal -->
 
             <button type="button" class="btn btn-primary wide_button" data-bs-toggle="modal"
-                    data-bs-target="#{{ button }}_modal">
-                {{ button.title() }}
+                    data-bs-target="#{{ database_name }}_modal">
+                {{ database_name.title() }}
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="{{ button }}_modal" tabindex="-1" aria-labelledby="{{ button }}_modal_label"
+            <div class="modal fade" id="{{ database_name }}_modal" tabindex="-1"
+                 aria-labelledby="{{ database_name }}_modal_label"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="{{ button }}_modal_label">{{ button.title() }}</h5>
+                            <h5 class="modal-title" id="{{ database_name }}_modal_label">{{ database_name.title()
+                                }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            {% for column in databases[button][1] %}
-                            <label class="form-label">{{column}}</label>
-                            <div class="mb-3">
-                                {% if column == 'description' %}
-                                <textarea class="form-control" name="description" rows="3"></textarea>
-                                {% else %}
-                                <input type="text" class="form-control" aria-label="Text input with checkbox">
-                                {% endif %}
+                        <form action="{{ url_for('setting_add', obj=database_name) }}" method="POST">
+                            <div class="modal-body">
+                                {% for column in databases[database_name][1] %}
+                                <label class="form-label">{{column}}</label>
+                                <div class="mb-3">
+                                    {% if column == 'description' %}
+                                    <textarea class="form-control" name="description" rows="3"></textarea>
+                                    {% elif column == 'img' %}
+                                    <!--                                        <label class="form-label">写真</label>-->
+                                    <input class="form-control" type="file" name="{{ column }}">
+                                    {% else %}
+                                    <input type="text" class="form-control" name="{{ column }}">
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
-
-                            <div class="mb-3">
-                                <label class="form-label">写真</label>
-                                <input class="form-control" type="file" id="formFile">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
                             </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -66,78 +67,123 @@
     <h1>Edit</h1>
     <div class="row">
 
-        {% for button in databases: %}
+        {% for database_name in databases: %}
         <div class="col-lg-3 col-md-6 col-sm-12">
             <!-- Button trigger modal -->
 
             <button type="button" class="btn btn-primary wide_button" data-bs-toggle="modal"
-                    data-bs-target="#{{ button }}_edit_modal">
-                {{ button.title() }}
+                    data-bs-target="#{{ database_name }}_edit_modal">
+                {{ database_name.title() }}
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="{{ button }}_edit_modal" tabindex="-1"
-                 aria-labelledby="{{ button }}_edit_modal_label"
+            <div class="modal fade" id="{{ database_name }}_edit_modal" tabindex="-1"
+                 aria-labelledby="{{ database_name }}_edit_modal_label"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="{{ button }}_edit_modal_label">{{ button.title() }}</h5>
+                            <h5 class="modal-title" id="{{ database_name }}_edit_modal_label">{{ database_name.title()
+                                }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
 
-                            <div class="accordion" id="{{ button }}_accordion">
-                                {% for data in databases[button][0] %}
+                            <div class="accordion" id="{{ database_name }}_accordion">
+                                {% for data in databases[database_name][0] %}
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="{{ button }}_{{ data.id }}_heading1">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#{{ button }}_{{ data.id }}_collapse1"
-                                                aria-expanded="False"
-                                                aria-controls="{{ button }}_{{ data.id }}_collapse1">
-                                            {{ data.title }}
-                                        </button>
-                                    </h2>
-                                    <div id="{{ button }}_{{ data.id }}_collapse1" class="accordion-collapse collapse"
-                                         aria-labelledby="{{ button }}_{{ data.id }}_heading1"
-                                         data-bs-parent="#{{ button }}_accordion">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <a href="{{ url_for('setting_delete', obj=database_name, id=data.id) }}"
+                                               class="btn btn-primary delete_button">削除</a>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <h2 class="accordion-header"
+                                                id="{{ database_name }}_{{ data.id }}_heading1">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#{{ database_name }}_{{ data.id }}_collapse1"
+                                                        aria-expanded="False"
+                                                        aria-controls="{{ database_name }}_{{ data.id }}_collapse1">
+                                                    {{ data.kind }}
+                                                </button>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div id="{{ database_name }}_{{ data.id }}_collapse1"
+                                         class="accordion-collapse collapse"
+                                         aria-labelledby="{{ database_name }}_{{ data.id }}_heading1"
+                                         data-bs-parent="#{{ database_name }}_accordion">
                                         <div class="accordion-body">
-                                            {% for column in databases[button][1] %}
-                                            <label class="form-label">{{column}}</label>
-                                            <div class="mb-3">
 
-                                                {% if column == 'title' %}
-                                                <input type="text" class="form-control 1"
-                                                       aria-label="Text input with checkbox"
-                                                       value={{data.title}}>
-                                                {% elif column == 'link_url' %}
-                                                <input type="text" class="form-control 2 "
-                                                       aria-label="Text input with checkbox"
-                                                       value={{data.link_url}}>
-                                                {% elif column == 'link_title' %}
-                                                <input type="text" class="form-control 3"
-                                                       aria-label="Text input with checkbox"
-                                                       value={{data.link_title}}>
-                                                {% elif column == 'time' %}
-                                                <input type="text" class="form-control 4"
-                                                       aria-label="Text input with checkbox"
-                                                       value={{data.time}}>
-                                                {% elif column == 'member' %}
-                                                <input type="text" class="form-control 5"
-                                                       aria-label="Text input with checkbox"
-                                                       value={{data.member}}>
-                                                {% elif column == 'description' %}
-                                                <textarea class="form-control" name="description"
-                                                          rows="3">{{data.description}}</textarea>
-                                                {% else %}
-                                                <input type="text" class="form-control 6"
-                                                       aria-label="Text input with checkbox">
-                                                {% endif %}
-                                            </div>
-                                            {% endfor %}
 
-                                            <button type="button" class="btn btn-primary">Save change</button>
+                                            <form action="{{ url_for('setting_edit', obj=database_name, id=data.id) }}"
+                                                  method="POST">
+                                                {% for column in databases[database_name][1] %}
+
+                                                <label class="form-label">{{column}}</label>
+                                                <div class="mb-3">
+                                                    {% if column == 'kind' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.kind}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'title' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.title}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'staff' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.title}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'examples' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.title}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'link_url' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.link_url}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'link_title' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.link_title}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'date' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.date}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'member' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.member}} name="{{ column }}"
+                                                    >
+                                                    {% elif column == 'description' %}
+                                                    <textarea class="form-control" name="description"
+                                                              rows="3">{{data.description}}</textarea>
+                                                    {% elif column == 'img' %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           value={{data.img}} name="{{ column }}"
+                                                    >
+                                                    {% else %}
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox" name="{{ column }}"
+                                                    >
+                                                    {% endif %}
+                                                </div>
+                                                {% endfor %}
+
+                                                <button type="submit" class="btn btn-primary">Save change</button>
+
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

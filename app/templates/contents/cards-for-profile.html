@@ -1,27 +1,31 @@
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card">
-
-
-        <img class="card-img-top rounded" src="../static/img/toppage/{{ card.title() }}.jpg"
-             alt="">
         <div class="card-body">
-            <h5 class="card-title">{{ card.title() }}</h5>
+            <h5 id="{{ data_title }}_h5" class="card-title">{{ data_title.title() }}</h5>
 
-            <div class="accordion" id="{{ card }}_accordion">
+            <div class="accordion" id="{{ data_title }}_accordion">
+
+                {% for kind in data %}
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="{{ card }}_heading1">
-                        <button class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#{{ card }}_collapse1"
-                                aria-expanded="False" aria-controls="{{ card }}_collapse1">
-                            基本情報
+                    <h2 class="accordion-header" id="{{ kind }}_heading">
+                        <button id="{{ data_title }}_button" class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#{{ kind }}_collapse"
+                                aria-expanded="False" aria-controls="{{ kind }}_collapse">
+                            {{ kind }}
                         </button>
                     </h2>
-                    <div id="{{ card }}_collapse1" class="accordion-collapse collapse"
-                         aria-labelledby="{{ card }}_heading1" data-bs-parent="#{{ card }}_accordion">
+                    <div id="{{ kind }}_collapse" class="accordion-collapse collapse"
+                         aria-labelledby="{{ kind }}_heading" data-bs-parent="#{{ data_title }}_accordion">
                         <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                {% for staff in data[kind] %}
+                                <li class="list-group-item">{{ staff }}</li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
             </div>
 

@@ -6,7 +6,7 @@
 
 {% include "header_footer/header.html" %}
 
-{% with title=title , something=something %}
+{% with title=title %}
 {% include "contents/title-screen.html" %}
 {% endwith %}
 
@@ -14,7 +14,7 @@
     <!-- Content here -->
     <div class="row">
         <div class="col-lg-3 col-sm-12">
-            <div class="content-table secondary">
+            <div class="content-table">
                 <nav class="nav flex-column">
                     {% for data_kind in data: %}
 
@@ -22,7 +22,7 @@
 
                     {% for data_title in data[data_kind]: %}
                     <nav class="nav flex-column sub-nav">
-                        <a class="nav-link" href="#{{ data_title }}_button">{{data_title}}</a>
+                        <a class="nav-link" href="#title_No{{ data[data_kind][data_title]['id'] }}">{{data_title}}</a>
                     </nav>
 
                     {% endfor %}
@@ -33,20 +33,23 @@
         </div>
         <div class="col-lg-9 col-sm-12">
             <div class="content">
+                <div class="row">
+
                 {% for data_kind in data: %}
                 <h5 id="{{ data_kind }}_h5">{{ data_kind }}</h5>
                 <div class="row">
 
                     {% for data_title in data[data_kind]: %}
 
-                    {% with data_title=data_title, data=data[data_kind][data_title] %}
-                    {% include "contents/cards-for-profile.html" %}
+                    {% with i=loop.index0, data_title=data_title, data=data[data_kind][data_title] %}
+                    {% include "contents/cards-for-portfolio.html" %}
                     {% endwith %}
 
                     {% endfor %}
 
                 </div>
                 {% endfor %}
+                </div>
 
             </div>
         </div>
