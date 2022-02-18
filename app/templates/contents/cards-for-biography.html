@@ -2,7 +2,7 @@
     <div class="card">
 
 
-        <img id="img{{ data['id'] }}"  class="card-img-top rounded" src="../static/img/biography/{{ data['img'] }}"
+        <img id="title_{{ data['id'] }}"  class="card-img-top rounded" src="../static/img/biography/{{ data['img'] }}"
              alt="">
         <div class="card-body">
             <h5 class="card-title">{{ data_title.title() }}</h5>
@@ -45,7 +45,7 @@
                          aria-labelledby="heading{{ data['id'] }}_2" data-bs-parent="#accordion{{ data['id'] }}">
                         <div class="accordion-body">
                             {{ data['description'] }}<br><br>
-                            <a href="#" class="btn btn-primary">さらに詳しく</a>
+                            <a href="#" class="btn btn-primary content-wide-btn">さらに詳しく</a>
                         </div>
                     </div>
                 </div>

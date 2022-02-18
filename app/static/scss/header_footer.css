@@ -1,8 +1,13 @@
-#navbarSupportedContent .navbar-nav {
+header #navbarSupportedContent .navbar-nav {
   margin-right: 0;
 }
-#navbarSupportedContent .navbar-nav .nav-item {
-  float: right;
+@media screen and (max-width: 576px) {
+  header #navbarSupportedContent .navbar-nav .nav-item .nav-link {
+    font-size: 1.2em;
+    text-align: right;
+    margin-left: 50%;
+    width: 50%;
+  }
 }
 
 .title-img {
@@ -15,7 +20,16 @@
 }
 
 footer .nav {
-  padding: 5% 0 5% 15%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+footer .nav .nav-item {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+footer .nav .nav-item a {
+  font-size: 1.2em;
 }
 footer .nav .nav-item .btn {
   margin: 5% 0 0 5%;

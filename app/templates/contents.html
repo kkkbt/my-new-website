@@ -18,11 +18,15 @@
                 <nav class="nav flex-column">
                     {% for data_kind in data: %}
 
-                    <a class="nav-link" href="#{{ data_kind }}_h5">{{data_kind}}</a>
+                    <a class="nav-link" href="#kind_{{ data_kind }}">{{data_kind}}</a>
 
                     {% for data_title in data[data_kind]: %}
                     <nav class="nav flex-column sub-nav">
-                        <a class="nav-link" href="#title_No{{ data[data_kind][data_title]['id'] }}">{{data_title}}</a>
+                        {% if img: %}
+                        <a class="nav-link" href="#title_{{ data[data_kind][data_title]['id'] }}">{{data_title}}</a>
+                        {% else: %}
+                        <a class="nav-link" href="#title_{{ data_title }}">{{data_title}}</a>
+                        {% endif %}
                     </nav>
 
                     {% endfor %}
@@ -33,23 +37,20 @@
         </div>
         <div class="col-lg-9 col-sm-12">
             <div class="content">
-                <div class="row">
-
                 {% for data_kind in data: %}
-                <h5 id="{{ data_kind }}_h5">{{ data_kind }}</h5>
-                <div class="row">
+                <h1 id="kind_{{ data_kind }}">{{ data_kind }}</h1>
+                <div class="row cards-row">
 
                     {% for data_title in data[data_kind]: %}
 
-                    {% with i=loop.index0, data_title=data_title, data=data[data_kind][data_title] %}
-                    {% include "contents/cards-for-portfolio.html" %}
+                    {% with data_title=data_title, data=data[data_kind][data_title] %}
+                    {% include "contents/cards-for-"+title+".html" %}
                     {% endwith %}
 
                     {% endfor %}
 
                 </div>
                 {% endfor %}
-                </div>
 
             </div>
         </div>

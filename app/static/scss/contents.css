@@ -14,27 +14,42 @@ body .container {
 }
 body .container .content-table {
   margin-top: 2em;
-  background-color: #265F73;
+  background-color: #555;
   border-radius: 0.5em;
 }
 body .container .content-table a {
-  color: white;
+  color: #bbb;
 }
 body .container .content-table .sub-nav {
   margin-left: 1em;
   font-size: 1em;
 }
-body .container .card {
-  background-color: #265F73;
-}
-body .container .card .card-title {
-  color: white;
-}
-body .container .accordion {
-  background-color: #265F73;
-}
 body .container .content {
   margin-top: 2em;
+}
+body .container .content h1 {
+  color: white;
+}
+body .container .content .cards-row {
+  margin-bottom: 1.5em;
+}
+body .container .content .cards-row .card {
+  background-color: #555;
+}
+body .container .content .cards-row .card .card-title {
+  color: #bbb;
+}
+body .container .content .cards-row .card p {
+  color: #bbb;
+}
+body .container .content .cards-row .card .accordion .accordion-button {
+  background-color: #bbb;
+}
+body .container .content .cards-row .card .accordion .accordion-body {
+  background-color: #ddd;
+}
+body .container .content .cards-row .card .accordion .content-wide-btn {
+  width: 100%;
 }
 body .container .contact-icons {
   margin-top: 2em;

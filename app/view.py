@@ -3,13 +3,14 @@ from collections import defaultdict
 import os
 from werkzeug.security import check_password_hash
 
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, current_user, logout_user
 
 from app import app
 from app import db
 from app import login_manager
-from app.database import UserDatabase, PortfolioDatabase, LibraryDatabase, BiographyDatabase, ProfileDatabase
+from app.database import UserDatabase, PortfolioDatabase, LibraryDatabase, BiographyDatabase, ProfileDatabase, \
+    initialize_user_database
 
 contents = ["profile", "portfolio", "library", "biography", "investment", "contact"]
 
@@ -19,20 +20,6 @@ databases = {
     "library": LibraryDatabase,
     "biography": BiographyDatabase
 }
-
-
-def initialize_user_database():
-    if db.session.query(UserDatabase).all():
-        return
-
-    name = os.environ.get("NAME")
-    pw = os.environ.get("HASHED_PW")
-    first_user = UserDatabase(password=pw, name=name)
-
-    db.session.add(first_user)
-    db.session.commit()
-    return
-
 
 
 @login_manager.user_loader
@@ -98,20 +85,20 @@ def portfolio():
         data[d.kind][d.title]["description"] = d.description
         data[d.kind][d.title]["img"] = d.img
 
-    return render_template("portfolio.html", title='portfolio', data=data)
+    return render_template("contents.html", title='portfolio', data=data, img=True)
 
 
 @app.route("/library")
 def library():
-    d3 = {"id": 0, "kind": "リンク集", "title": "株式投資", "link_title": "バフェット・コード",
-          "link_url": "https://www.buffett-code.com/",
-          "description": "財務諸表が簡単に調べられる。"}
-    d1 = {"id": 1, "kind": "リンク集", "title": "株式投資", "link_title": "バフェットの財務諸表を読む力",
-          "link_url": "https://www.amazon.co.jp/%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%BC%B7%E3%81%AE%E6%8A%95%E8%B3%87%E5%AE%B6-%E3%83%90%E3%83%95%E3%82%A7%E3%83%83%E3%83%88%E3%81%AE%E8%B2%A1%E5%8B%99%E8%AB%B8%E8%A1%A8%E3%82%92%E8%AA%AD%E3%82%80%E5%8A%9B-%E5%A4%A7%E4%B8%8D%E6%B3%81%E3%81%A7%E3%82%82%E6%8A%95%E8%B3%87%E3%81%A7%E5%8B%9D%E3%81%A1%E6%8A%9C%E3%81%8F58%E3%81%AE%E3%83%AB%E3%83%BC%E3%83%AB-%E3%83%A1%E3%82%A2%E3%83%AA%E3%83%BC%E3%83%BB%E3%83%90%E3%83%95%E3%82%A7%E3%83%83%E3%83%88/dp/4198627053/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=%E3%83%BB%E3%83%90%E3%83%95%E3%82%A7%E3%83%83%E3%83%88%E3%81%AE%E8%B2%A1%E5%8B%99%E8%AB%B8%E8%A1%A8%E3%82%92%E8%AA%AD%E3%82%80%E5%8A%9B&qid=1595497396&sr=8-1",
-          "description": "財務諸表が読めるようになる"}
-    d2 = {"id": 2, "kind": "作成ファイル", "title": "英語", "link_title": "TOEFL_iBTについて",
-          "link_url": "http://kkkbt.sakura.ne.jp/files/TOEFL_iBT.pdf", "description": "トーフルで100点を超えた時。"}
-    ds = [d1, d2, d3]
+    # d3 = {"id": 0, "kind": "リンク集", "title": "株式投資", "link_title": "バフェット・コード",
+    #       "link_url": "https://www.buffett-code.com/",
+    #       "description": "財務諸表が簡単に調べられる。"}
+    # d1 = {"id": 1, "kind": "リンク集", "title": "株式投資", "link_title": "バフェットの財務諸表を読む力",
+    #       "link_url": "https://www.amazon.co.jp/%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%BC%B7%E3%81%AE%E6%8A%95%E8%B3%87%E5%AE%B6-%E3%83%90%E3%83%95%E3%82%A7%E3%83%83%E3%83%88%E3%81%AE%E8%B2%A1%E5%8B%99%E8%AB%B8%E8%A1%A8%E3%82%92%E8%AA%AD%E3%82%80%E5%8A%9B-%E5%A4%A7%E4%B8%8D%E6%B3%81%E3%81%A7%E3%82%82%E6%8A%95%E8%B3%87%E3%81%A7%E5%8B%9D%E3%81%A1%E6%8A%9C%E3%81%8F58%E3%81%AE%E3%83%AB%E3%83%BC%E3%83%AB-%E3%83%A1%E3%82%A2%E3%83%AA%E3%83%BC%E3%83%BB%E3%83%90%E3%83%95%E3%82%A7%E3%83%83%E3%83%88/dp/4198627053/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=%E3%83%BB%E3%83%90%E3%83%95%E3%82%A7%E3%83%83%E3%83%88%E3%81%AE%E8%B2%A1%E5%8B%99%E8%AB%B8%E8%A1%A8%E3%82%92%E8%AA%AD%E3%82%80%E5%8A%9B&qid=1595497396&sr=8-1",
+    #       "description": "財務諸表が読めるようになる"}
+    # d2 = {"id": 2, "kind": "作成ファイル", "title": "英語", "link_title": "TOEFL_iBTについて",
+    #       "link_url": "http://kkkbt.sakura.ne.jp/files/TOEFL_iBT.pdf", "description": "トーフルで100点を超えた時。"}
+    # ds = [d1, d2, d3]
 
     data = defaultdict(create_dict_for_library)
     library_database = db.session.query(LibraryDatabase).all()
@@ -120,8 +107,6 @@ def library():
         one_data = {"id": d.id, "link_title": d.link_title, "link_url": d.link_url,
                     "description": d.description}
         data[d.kind][d.title].append(one_data)
-
-    print(data)
 
     # biography_database = db.session.query(LibraryDatabase).all()
 
@@ -137,21 +122,11 @@ def library():
     #     for key in BiographyDatabase.columns[2:]:
     #         if not data[d.kind][d.title][key]:
     #             del data[d.kind][d.title][key]
-    return render_template("library.html", title='library', data=data)
+    return render_template("contents.html", title='library', data=data, img=False)
 
 
 @app.route("/biography")
 def biography():
-    # id = db.Column(db.Integer, primary_key=True)
-    # title = db.Column(db.String(250), unique=True, nullable=False)
-    # time = db.Column(db.String(250), nullable=True)
-    # place = db.Column(db.String(250), nullable=True)
-    # member = db.Column(db.String(250), nullable=True)
-    # link_title = db.Column(db.String(250), nullable=True)
-    # link_url = db.Column(db.String(250), nullable=True)
-    # description = db.Column(db.String(250), nullable=True)
-    # img = db.Column(db.String(250), nullable=True)
-
     # d1 = {
     #     "kind": "部活動",
     #     "title": "国分寺高校サッカー部",
@@ -194,8 +169,7 @@ def biography():
         #     if not data[d.kind][d.title][key]:
         #         del data[d.kind][d.title][key]
 
-    print(data)
-    return render_template("biography.html", title='biography', data=data)
+    return render_template("contents.html", title='biography', data=data, img=True)
 
 
 @app.route("/profile")
@@ -212,15 +186,9 @@ def profile():
     data = defaultdict(create_dict_for_profile)
 
     for d in profile_database:
-        print(d.kind)
-        print(d.title)
-        print(d.staff)
-        print(d.examples)
-
         data[d.kind][d.title][d.staff].append(d.examples)
-    print(data)
 
-    return render_template("profile.html", title='profile', data=data)
+    return render_template("contents.html", title='profile', data=data, img=False)
 
 
 @app.route("/investment")
@@ -243,10 +211,12 @@ def login():
         hashed_password = os.getenv("HASHED_PW")
         user = UserDatabase.query.filter_by(name=name).first()
         if not user:
-            # flash("That email does not exist, please try again.")
+            flash("That email does not exist, please try again.")
             return redirect(url_for('login'))
         if not check_password_hash(hashed_password, password):
-            return redirect(url_for('login', title='login失敗'))
+            flash("login失敗")
+
+            return redirect(url_for('login'))
 
         else:
             login_user(user)
@@ -317,17 +287,11 @@ def setting_edit(obj):
 
     if obj == "profile":
         db_to_update = ProfileDatabase.query.get(db_id_to_edit)
-        db_to_update.kind = request.form["kind"]
-        db_to_update.title = request.form["title"]
         db_to_update.staff = request.form["staff"]
         db_to_update.examples = request.form["examples"]
-        db_to_update.link_title = request.form["link_title"]
-        db_to_update.link_url = request.form["link_url"]
 
     elif obj == "biography":
         db_to_update = BiographyDatabase.query.get(db_id_to_edit)
-        db_to_update.kind = request.form["kind"]
-        db_to_update.title = request.form["title"]
         db_to_update.date = request.form["date"]
         db_to_update.place = request.form["place"]
         db_to_update.member = request.form["member"]
@@ -338,8 +302,6 @@ def setting_edit(obj):
 
     elif obj == "portfolio":
         db_to_update = PortfolioDatabase.query.get(db_id_to_edit)
-        db_to_update.kind = request.form["kind"]
-        db_to_update.title = request.form["title"]
         db_to_update.date = request.form["date"]
         db_to_update.link_title = request.form["link_title"]
         db_to_update.link_url = request.form["link_url"]
@@ -349,31 +311,22 @@ def setting_edit(obj):
 
     else:  # library
         db_to_update = LibraryDatabase.query.get(db_id_to_edit)
-        db_to_update.kind = request.form["kind"]
-        db_to_update.title = request.form["title"]
         db_to_update.link_title = request.form["link_title"]
         db_to_update.link_url = request.form["link_url"]
         db_to_update.description = request.form["description"]
 
+    db_to_update.kind = request.form["kind"]
+    db_to_update.title = request.form["title"]
     db.session.commit()
     return redirect(url_for('setting'))
 
 
-@app.route("/setting/delete/<string:obj>", methods=["DELETE"])
+@app.route("/setting/delete/<string:obj>", methods=["GET", "DELETE"])
 @login_required
 def setting_delete(obj):
     db_id_to_delete = request.args.get('id')
 
-    if obj == "profile":
-        db_to_delete = ProfileDatabase.query.get(db_id_to_delete)
-    elif obj == "biography":
-        db_to_delete = BiographyDatabase.query.get(db_id_to_delete)
-
-    elif obj == "portfolio":
-        db_to_delete = portfolio.query.get(db_id_to_delete)
-
-    else:  # library
-        db_to_delete = LibraryDatabase.query.get(db_id_to_delete)
+    db_to_delete = databases[obj].query.get(db_id_to_delete)
 
     db.session.delete(db_to_delete)
     db.session.commit()

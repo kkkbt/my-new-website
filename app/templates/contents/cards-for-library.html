@@ -18,17 +18,14 @@
                          aria-labelledby="heading_No{{ one_data['id'] }}"
                          data-bs-parent="#{{ data_title }}_accordion">
                         <div class="accordion-body">
-                            {{ one_data['description'] }}
-                            <a href="{{ one_data['link_url'] }}" class="btn btn-primary">詳しく</a>
+                            {{ one_data['description'] }}<br><br>
+                            <a href="{{ one_data['link_url'] }}" class="btn btn-primary content-wide-btn">詳しく</a>
 
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
-
-
         </div>
     </div>
 </div>

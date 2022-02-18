@@ -2,11 +2,11 @@
     <div class="card">
 
 
-        <img class="card-img-top rounded" src="../static/img/portfolio/{{ data['img'] }}"
+        <img id="title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/portfolio/{{ data['img'] }}"
              alt="">
         <div class="card-body">
-            <h5 id="title_No{{ data['id'] }}" class="card-title">{{ data_title.title() }}</h5>
-            <p>{{ data['date'] }}</p>
+            <h5 class="card-title">{{ data_title.title() }}</h5>
+            <p>作成年月：{{ data['date'] }}</p>
 
             <div class="accordion" id="accordion_No{{ data['id'] }}">
                 <div class="accordion-item">
@@ -21,7 +21,8 @@
                          aria-labelledby="heading_No{{ data['id'] }}" data-bs-parent="#accordion_No{{ data['id'] }}">
                         <div class="accordion-body">
                             {{ data['description'] }}<br><br>
-                            <a href="{{ data['link_url'] }}" class="btn btn-primary">{{ data['link_title'] }}</a>
+                            <a href="{{ data['link_url'] }}" class="btn btn-primary content-wide-btn">{{
+                                data['link_title'] }}</a>
                         </div>
                     </div>
                 </div>

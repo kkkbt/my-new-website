@@ -2,6 +2,7 @@
 <!--  Link to my css  -->
 <link rel="stylesheet" href="../static/scss/index.css">
 <link rel="stylesheet" href="../static/scss/contents.css">
+<link rel="stylesheet" href="../static/scss/login.css">
 
 
 {% include "header_footer/header.html" %}
@@ -12,16 +13,26 @@
 
 <div class="container">
     <!-- Content here -->
+    <h5>管理者用ページにログインします。</h5>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <form method="POST">
         <div class="mb-3">
             <label class="form-label">Name</label>
 
-            <input type="text" class="form-control" name="name" placeholder="Name">
+            <input type="text" class="form-control" name="name" placeholder="Name" required="required">
             <label class="form-label">Password</label>
 
-            <input type="text" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
         </div>
-        <button type="submit" class="btn btn-primary">login</button>
+        <div class="div-for-button">
+            <button type="submit" class="btn btn-primary">login</button>
+        </div>
     </form>
 </div>
 

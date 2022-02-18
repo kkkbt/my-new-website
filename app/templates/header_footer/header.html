@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <li><a class="nav-link" href="{{ url_for('profile') }}" class="button">Profile</a></li>
+                    <a class="nav-link" href="{{ url_for('profile') }}" class="button">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('portfolio') }}">Portfolio</a>
@@ -24,27 +24,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('investment') }}">Investment</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ url_for('biography') }}" id="navbarDropdown"
-                           role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Biography
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ url_for('biography') }}">Study Abroad</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('biography') }}">Work</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="{{ url_for('biography') }}">School</a></li>
-                            <li><a class="dropdown-item disabled" href="{{ url_for('biography') }}">Chinese</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('biography') }}">Biography</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('contact') }}" tabindex="-1">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}" tabindex="-1"><i class="fa-solid fa-wrench"></i></a>
+                        <a class="nav-link" href="{{ url_for('login') }}" tabindex="-1"><i
+                                class="fa-solid fa-wrench"></i></a>
                     </li>
                 </ul>
             </div>

@@ -1,5 +1,20 @@
+import os
+
 from app import db
 from flask_login import UserMixin
+
+
+def initialize_user_database():
+    if db.session.query(UserDatabase).all():
+        return
+
+    name = os.environ.get("NAME")
+    pw = os.environ.get("HASHED_PW")
+    first_user = UserDatabase(password=pw, name=name)
+
+    db.session.add(first_user)
+    db.session.commit()
+    return
 
 
 class UserDatabase(UserMixin, db.Model):

@@ -1,0 +1,34 @@
+body .container {
+  margin: 2em 0 2em 0;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2em;
+  border-radius: 0.5em;
+  background-color: #555;
+}
+@media screen and (max-width: 576px) {
+  body .container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+body .container h5 {
+  color: #999;
+}
+body .container p {
+  color: red;
+}
+body .container form label {
+  color: #bbb;
+}
+body .container form input {
+  margin-bottom: 1em;
+  background-color: #ddd;
+}
+body .container form .div-for-button {
+  text-align: right;
+}
+
+/*# sourceMappingURL=login.css.map */
