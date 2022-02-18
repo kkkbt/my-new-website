@@ -55,3 +55,6 @@ class BiographyDatabase(db.Model):
     img = db.Column(db.String(250), nullable=True)
 
     columns = ["kind", "title", "date", "place", "member", "link_title", "link_url", "description", "img"]
+
+
+db.create_all()
