@@ -1,0 +1,35 @@
+<!--inputs of kind and title-->
+<label class="form-label">kind</label>
+<div class="mb-3">
+    <input type="text" class="form-control"
+           aria-label="Text input with checkbox"
+           name="kind" value="{{ kind }}">
+</div>
+<label class="form-label">title</label>
+<div class="mb-3">
+    <input type="text" class="form-control"
+           aria-label="Text input with checkbox"
+           name="title" value="{{ title }}">
+</div>
+
+{% for column in data %}
+
+{% if column != 'id' %}
+<label class="form-label">{{column}}</label>
+<div class="mb-3">
+    {% if column == 'description' %}
+    <textarea class="form-control" name="{{ column }}"
+              rows="3">{{ data[column] }}</textarea>
+    {% else %}
+    <input type="text" class="form-control"
+           aria-label="Text input with checkbox"
+           name="{{ column }}" value="{{ data[column] }}">
+    {% endif %}
+
+</div>
+{% endif %}
+
+{% endfor %}
+
+<button type="submit" class="btn btn-primary">Save change
+</button>

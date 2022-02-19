@@ -1,0 +1,27 @@
+{% for column in columns %}
+
+{% if column not in columns_not_included: %}
+<div class="mb-3">
+    {% if column == 'description' %}
+    <textarea class="form-control" name="description"
+              placeholder="{{column}}"
+              rows="3"></textarea>
+    {% elif column == 'img' %}
+    <input type="file" class="form-control"
+           aria-label="Text input with checkbox"
+           placeholder="{{column}}"
+           name="{{ column }}">
+    {% else %}
+    <input type="text" class="form-control"
+           aria-label="Text input with checkbox"
+           placeholder="{{column}}"
+           name="{{ column }}">
+    {% endif %}
+
+</div>
+{% endif %}
+
+{% endfor %}
+
+<button type="submit" class="btn btn-primary">Save change
+</button>
