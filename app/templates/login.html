@@ -5,15 +5,14 @@
 <link rel="stylesheet" href="../static/scss/login.css">
 
 
-{% include "header_footer/header.html" %}
-
 {% with title=title %}
+{% include "header_footer/header.html" %}
 {% include "contents/title-screen.html" %}
 {% endwith %}
 
 <div class="container">
     <!-- Content here -->
-    <h5>管理者用ページにログインします。</h5>
+    <h5>{{ explanation }}</h5>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}

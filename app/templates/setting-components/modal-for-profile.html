@@ -67,39 +67,56 @@
                                              aria-labelledby="{{ database_name }}_{{ staff }}_heading1"
                                              data-bs-parent="#{{ database_name }}_{{ kind }}_{{ title.split()[0] }}_accordion">
 
-                                            <ul class="list-group list-group-flush">
+                                            <form action="{{ url_for('setting_edit', obj=database_name, kind=kind, title=title, staff=staff) }}"
+                                                  method="POST">
                                                 {% for example in database[kind][title][staff] %}
-                                                <li class="list-group-item">
-                                                    <div class="row">
-                                                        <div class="col-3">
-
-                                                            {% with database_name=database_name, id=example[0] %}
-                                                            {% include "setting-components/delete_button.html" %}
-                                                            {% endwith %}
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <span class="align-bottom">{{ example[1] }}</span>
-                                                        </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-3">
+                                                        {% with database_name=database_name, id=example[0] %}
+                                                        {% include "setting-components/delete_button.html" %}
+                                                        {% endwith %}
                                                     </div>
-                                                </li>
+                                                    <div class="col-9">
+                                                        <input type="text" class="form-control"
+                                                               aria-label="Text input with checkbox"
+                                                               placeholder="{{ example[1] }}"
+                                                               required="required"
+                                                               name="examples"
+                                                               value="{{ example[1] }}"
+                                                        >
+                                                    </div>
+                                                </div>
                                                 {% endfor %}
-                                                <li class="list-group-item">
-                                                    <form action="{{ url_for('setting_add', obj=database_name, kind=kind, title=title, staff=staff) }}"
-                                                          method="POST">
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control"
-                                                                   aria-label="Text input with checkbox"
-                                                                   placeholder="Add example"
-                                                                   name="examples">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary">Save change
-                                                        </button>
-                                                    </form>
 
-                                                </li>
+                                                <button type="submit" class="btn btn-primary">Save change
+                                                </button>
+                                            </form>
 
+                                            <form action="{{ url_for('setting_add', obj=database_name, kind=kind, title=title, staff=staff) }}"
+                                                  method="POST">
+                                                <div class="mb-3">
 
-                                            </ul>
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           placeholder="examples"
+                                                           required="required"
+                                                           name="examples">
+                                                </div>
+                                                {% for i in range(4) %}
+
+                                                <div class="mb-3">
+
+                                                    <input type="text" class="form-control"
+                                                           aria-label="Text input with checkbox"
+                                                           placeholder="examples"
+                                                           name="examples">
+
+                                                </div>
+                                                {% endfor %}
+
+                                                <button type="submit" class="btn btn-primary">Add examples
+                                                </button>
+                                            </form>
 
 
                                         </div>

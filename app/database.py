@@ -1,26 +1,12 @@
-import os
-
 from app import db
 from flask_login import UserMixin
-
-
-def initialize_user_database():
-    if db.session.query(UserDatabase).all():
-        return
-
-    name = os.environ.get("NAME")
-    pw = os.environ.get("HASHED_PW")
-    first_user = UserDatabase(password=pw, name=name)
-
-    db.session.add(first_user)
-    db.session.commit()
-    return
 
 
 class UserDatabase(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     password = db.Column(db.String(1000))
     name = db.Column(db.String(1000), unique=True)
+    columns = ["name", "password"]
 
 
 class ProfileDatabase(db.Model):
@@ -49,7 +35,7 @@ class PortfolioDatabase(db.Model):
 class LibraryDatabase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     kind = db.Column(db.String(250), nullable=False)
-    title = db.Column(db.String(250), unique=True, nullable=False)
+    title = db.Column(db.String(250), nullable=False)
     link_title = db.Column(db.String(250), nullable=True)
     link_url = db.Column(db.String(250), nullable=True)
     description = db.Column(db.String(250), nullable=True)

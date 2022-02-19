@@ -18,6 +18,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_message = u"Bonvolu ensaluti por uzi tiun paĝon."
 
+
 from app import view
 from app import database
 

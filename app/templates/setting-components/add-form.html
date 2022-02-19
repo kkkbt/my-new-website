@@ -2,10 +2,28 @@
 
 {% if column not in columns_not_included: %}
 <div class="mb-3">
-    {% if column == 'description' %}
+    {% if column == 'description': %}
     <textarea class="form-control" name="description"
               placeholder="{{column}}"
               rows="3"></textarea>
+    {% elif column in ['kind', 'title']: %}
+    <input type="text" class="form-control"
+           aria-label="Text input with checkbox"
+           placeholder="{{column}}"
+           required="required"
+           name="{{ column }}">
+    {% elif column == 'examples' %}
+    <input type="text" class="form-control"
+           aria-label="Text input with checkbox"
+           placeholder="{{column}}"
+           required="required"
+           name="{{ column }}">
+    {% for i in range(4) %}
+    <input type="text" class="form-control"
+           aria-label="Text input with checkbox"
+           placeholder="{{column}}"
+           name="{{ column }}">
+    {% endfor %}
     {% elif column == 'img' %}
     <input type="file" class="form-control"
            aria-label="Text input with checkbox"

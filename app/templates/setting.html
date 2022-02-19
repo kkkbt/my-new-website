@@ -5,8 +5,9 @@
 <link rel="stylesheet" href="../static/scss/setting.css">
 
 
+{% with title=title %}
 {% include "header_footer/header.html" %}
-
+{% endwith %}
 
 <div class="container">
 
@@ -40,11 +41,8 @@
                             columns=columns[database_name] %}
                             {% if database_name in ['portfolio', 'biography']: %}
                             {% include "setting-components/modal-for-biography-portfolio.html" %}
-                            {% elif database_name == 'profile' %}
-                            {% include "setting-components/modal-for-profile.html" %}
-                            {% elif database_name == 'library' %}
-                            {% include "setting-components/modal-for-library.html" %}
-
+                            {% elif database_name in ['profile', 'library', 'user'] %}
+                            {% include "setting-components/modal-for-" + database_name + ".html" %}
                             {% endif %}
                             {% endwith %}
                         </div>
