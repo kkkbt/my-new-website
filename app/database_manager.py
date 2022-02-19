@@ -5,14 +5,15 @@ from werkzeug.security import generate_password_hash
 from flask import request
 
 from app import db
-from app.database import ProfileDatabase, PortfolioDatabase, LibraryDatabase, BiographyDatabase, UserDatabase
+from app.database import ProfileDatabase, PortfolioDatabase, LibraryDatabase, BiographyDatabase, UserDatabase, SecretDatabase
 
 databases = {
     "profile": ProfileDatabase,
     "portfolio": PortfolioDatabase,
     "library": LibraryDatabase,
     "biography": BiographyDatabase,
-    "user": UserDatabase
+    "user": UserDatabase,
+    "secret": SecretDatabase
 }
 
 
@@ -44,7 +45,7 @@ def create_dict(obj):
 
     database = db.session.query(databases[obj]).all()
 
-    if obj == "profile":
+    if obj == "profile" or obj == "secret":
         data = defaultdict(func_for_profile)
         for d in database:
             data[d.kind][d.title][d.staff].append((d.id, d.examples))

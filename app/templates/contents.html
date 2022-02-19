@@ -43,7 +43,13 @@
                     {% for data_title in data[data_kind]: %}
 
                     {% with data_title=data_title, data=data[data_kind][data_title] %}
+
+                    {% if database_name in ['profile', 'secret'] %}
+                    {% include "contents/cards-for-profile-secret.html" %}
+                    {% elif database_name in ['library', 'user', 'portfolio', 'biography'] %}
                     {% include "contents/cards-for-"+title+".html" %}
+                    {% endif %}
+
                     {% endwith %}
 
                     {% endfor %}

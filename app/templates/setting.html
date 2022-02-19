@@ -41,7 +41,9 @@
                             columns=columns[database_name] %}
                             {% if database_name in ['portfolio', 'biography']: %}
                             {% include "setting-components/modal-for-biography-portfolio.html" %}
-                            {% elif database_name in ['profile', 'library', 'user'] %}
+                            {% elif database_name in ['profile', 'secret'] %}
+                            {% include "setting-components/modal-for-profile-secret.html" %}
+                            {% elif database_name in ['library', 'user'] %}
                             {% include "setting-components/modal-for-" + database_name + ".html" %}
                             {% endif %}
                             {% endwith %}

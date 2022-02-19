@@ -163,8 +163,8 @@ def login_secret():
 @app.route("/secret")
 @login_required
 def secret():
-    title = 'biography'
+    title = 'secret'
     data = create_dict(title)
 
-    return render_template("contents.html", title=title, data=data, img=True)
+    return render_template("contents.html", title=title, data=data, img=False)
     # return render_template("contents.html", title='secret')

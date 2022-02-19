@@ -9,7 +9,7 @@ class UserDatabase(UserMixin, db.Model):
     columns = ["name", "password"]
 
 
-class Secret(db.Model):
+class SecretDatabase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     kind = db.Column(db.String(50), nullable=False)
     title = db.Column(db.String(50), nullable=False)
