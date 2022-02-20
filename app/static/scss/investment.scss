@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+
+@-webkit-keyframes chartjs-render-animation {
+  from {
+    opacity: 0.99
+  }
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes chartjs-render-animation {
+  from {
+    opacity: 0.99
+  }
+  to {
+    opacity: 1
+  }
+}
+
+$h5fontsize: 1px;
+$afontsize: 0.5px;
+
+$gray1: #111;
+$gray2: #333;
+$gray3: #555;
+$gray4: #777;
+$gray5: #999;
+$gray6: #bbb;
+$gray7: #ddd;
+
+
+@mixin tocenter($wid) {
+  width: $wid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.container {
+  .content {
+    .card-body {
+      background-color: $gray3;
+      border-radius: 1em;
+      padding: 1em 1em 0em 1em;
+
+      .chartjs-render-monitor {
+        -webkit-animation: chartjs-render-animation 0.001s;
+        animation: chartjs-render-animation 0.001s;
+
+        padding: 1em 2em 2em 3em;
+        @media screen and (max-width: 576px) {
+          padding: 0;
+
+        }
+      }
+
+
+    }
+
+    .card-table {
+      padding-bottom: 1em;
+      h2 {
+        color: $gray7;
+      }
+      th {
+        color: $gray6;
+      }
+      td {
+        color: $gray5;
+      }
+    }
+  }
+}
+
+

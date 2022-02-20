@@ -39,16 +39,33 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mail_modal_label">Modal title</h5>
+                            <h5 class="modal-title" id="mail_modal_label">管理者にメッセージを送る</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        <form action="{{ url_for('contact') }}"
+                              method="POST">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control"
+                                           aria-label="Text input with checkbox"
+                                           name="nickname" placeholder="Nickname">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control"
+                                           aria-label="Text input with checkbox"
+                                           name="email_subject" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" name="email_content"
+                                              placeholder="Message"
+                                              rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                                <button type="submit" class="btn btn-primary">送信</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

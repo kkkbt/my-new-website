@@ -8,6 +8,7 @@ from app import login_manager
 from app.database import UserDatabase
 from app.database_manager import initialize_user_database, create_columns, create_dict, get_current_data, \
     add, edit, delete
+from app.email import send_email
 
 
 @login_manager.user_loader
@@ -60,8 +61,16 @@ def biography():
     return render_template("contents.html", title=title, data=data, img=True)
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        nickname = request.form.get('nickname')
+        email_subject = request.form.get('email_subject')
+        email_content = request.form.get('email_content')
+        send_email(nickname, email_subject, email_content)
+
+        return redirect(url_for('contact'))
+
     return render_template("contact.html", title='contact')
 
 
