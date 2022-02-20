@@ -26,6 +26,7 @@ def home():
 def profile():
     title = 'profile'
     data = create_dict(title)
+    print(data)
 
     return render_template("contents.html", title=title, data=data, img=False)
 

@@ -5,7 +5,8 @@ from werkzeug.security import generate_password_hash
 from flask import request
 
 from app import db
-from app.database import ProfileDatabase, PortfolioDatabase, LibraryDatabase, BiographyDatabase, UserDatabase, SecretDatabase
+from app.database import ProfileDatabase, PortfolioDatabase, LibraryDatabase, BiographyDatabase, UserDatabase, \
+    SecretDatabase
 
 databases = {
     "profile": ProfileDatabase,
@@ -99,6 +100,7 @@ def create_columns():
 def get_current_data():
     return {database_name: create_dict(database_name) for database_name in databases}
 
+
 def add(obj, kind, title, staff):
     new_data = []
     new_datum = {}
@@ -121,7 +123,7 @@ def add(obj, kind, title, staff):
         else:
             new_datum["title"] = title
 
-        if obj == "profile":
+        if obj == "profile" or obj == "secret":
             if not staff:
                 new_datum["staff"] = request.form["staff"]
             else:
@@ -129,10 +131,11 @@ def add(obj, kind, title, staff):
             examples = request.form.getlist("examples")
 
             for example in examples:
-                print(example)
-                new_datum["examples"] = example
                 if example:
+                    print(example)
+                    new_datum["examples"] = example
                     new_data.append(new_datum)
+            print(new_data)
 
         elif obj == "portfolio":
             new_datum["date"] = request.form["date"]
@@ -178,7 +181,7 @@ def edit(obj, db_id_to_edit, name):
         password = generate_password_hash(request.form["password"])
         db_to_update.password = password
     else:
-        if obj == "profile":
+        if obj == "profile" or obj == "secret":
             staff = request.form["staff"]
             examples = request.form.getlist("examples")
             db_to_update.staff = staff
@@ -212,6 +215,7 @@ def edit(obj, db_id_to_edit, name):
         db_to_update.title = request.form["title"]
     db.session.commit()
     return
+
 
 def delete(obj, db_id_to_delete):
     db_to_delete = databases[obj].query.get(db_id_to_delete)
