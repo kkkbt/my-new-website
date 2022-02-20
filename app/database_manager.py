@@ -134,7 +134,7 @@ def add(obj, kind, title, staff):
                 if example:
                     print(example)
                     new_datum["examples"] = example
-                    new_data.append(new_datum)
+                    new_data.append(new_datum.copy())
             print(new_data)
 
         elif obj == "portfolio":
