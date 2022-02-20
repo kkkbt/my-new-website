@@ -1,3 +1,5 @@
+import ast
+
 from werkzeug.security import check_password_hash
 
 from flask import render_template, redirect, url_for, request, flash
@@ -136,8 +138,9 @@ def setting_edit(obj, name=""):
 @app.route("/setting/delete/<string:obj>", methods=["GET", "DELETE"])
 @login_required
 def setting_delete(obj):
-    db_id_to_delete = request.args.get('id')
-    delete(obj, db_id_to_delete)
+    which_db_to_delete = request.args.get('which_db_to_delete')
+    which_db_to_delete = ast.literal_eval(which_db_to_delete)
+    delete(obj, which_db_to_delete)
 
     return redirect(url_for('setting'))
 

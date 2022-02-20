@@ -13,16 +13,23 @@
            required="required"
            name="{{ column }}">
     {% elif column == 'examples' %}
-    <input type="text" class="form-control"
-           aria-label="Text input with checkbox"
-           placeholder="{{column}}"
-           required="required"
-           name="{{ column }}">
+
+    <div class="mb-3">
+        <input type="text" class="form-control"
+               aria-label="Text input with checkbox"
+               placeholder="{{column}}"
+               required="required"
+               name="{{ column }}">
+    </div>
     {% for i in range(4) %}
-    <input type="text" class="form-control"
-           aria-label="Text input with checkbox"
-           placeholder="{{column}}"
-           name="{{ column }}">
+    <div class="mb-3">
+
+        <input type="text" class="form-control"
+               aria-label="Text input with checkbox"
+               placeholder="{{column}}"
+               name="{{ column }}">
+    </div>
+
     {% endfor %}
     {% elif column == 'img' %}
     <input type="file" class="form-control"

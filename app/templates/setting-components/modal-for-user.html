@@ -17,7 +17,7 @@
             {% else: %}
             <div class="row mb-3">
                 <div class="col-3">
-                    {% with database_name=database_name, id=database[name] %}
+                    {% with database_name=database_name, which_db_to_delete={"id": database[name]} %}
                     {% include "setting-components/delete_button.html" %}
                     {% endwith %}
                 </div>
