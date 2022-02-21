@@ -1,9 +1,12 @@
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card">
 
-
+        {% if data['img']: %}
         <img id="title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/portfolio/{{ data['img'] }}"
              alt="">
+        {% else: %}
+        <img id="title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/no-img.jpg"
+        {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{ data_title.title() }}</h5>
             <p>作成年月：{{ data['date'] }}</p>

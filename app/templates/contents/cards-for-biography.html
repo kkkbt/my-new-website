@@ -2,8 +2,14 @@
     <div class="card">
 
 
-        <img id="title_{{ data['id'] }}"  class="card-img-top rounded" src="../static/img/biography/{{ data['img'] }}"
+
+
+        {% if data['img']: %}
+        <img id="title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/biography/{{ data['img'] }}"
              alt="">
+        {% else: %}
+        <img id="title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/no-img.jpg"
+             {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{ data_title.title() }}</h5>
 
