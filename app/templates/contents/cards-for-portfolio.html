@@ -25,8 +25,9 @@
                          aria-labelledby="heading_No{{ data['id'] }}" data-bs-parent="#accordion_No{{ data['id'] }}">
                         <div class="accordion-body">
                             {{ data['description'] }}<br><br>
-                            <a href="{{ data['link_url'] }}" class="btn btn-primary content-wide-btn">{{
-                                data['link_title'] }}</a>
+                            {% if data['link_title']: %}
+                            <a href="{{ data['link_title'] }}" class="btn btn-primary content-wide-btn">{{ data['link_title'] }}</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

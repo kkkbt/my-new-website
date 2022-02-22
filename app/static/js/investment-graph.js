@@ -2,7 +2,7 @@ var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", a],
         datasets: [{
             data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
             lineTension: 0,

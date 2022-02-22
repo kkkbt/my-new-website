@@ -68,4 +68,16 @@ class BiographyDatabase(db.Model):
     columns = ["kind", "title", "date", "place", "member", "link_title", "link_url", "description", "img"]
 
 
+class Investment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    kind = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(50), unique=True, nullable=False)
+    date = db.Column(db.String(50), nullable=True)
+    place = db.Column(db.String(50), nullable=True)
+    member = db.Column(db.String(50), nullable=True)
+    link_title = db.Column(db.String(50), nullable=True)
+    link_url = db.Column(db.String(1000), nullable=True)
+    description = db.Column(db.String(1000), nullable=True)
+    img = db.Column(db.String(50), nullable=False)
+
 db.create_all()

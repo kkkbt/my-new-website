@@ -35,6 +35,7 @@ body .container .content .cards-row {
 }
 body .container .content .cards-row .card {
   background-color: #555;
+  margin-bottom: 1em;
 }
 body .container .content .cards-row .card .dummy-img {
   background-color: #999;
