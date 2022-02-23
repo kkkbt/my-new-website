@@ -21,17 +21,22 @@ def load_user(user_id):
 
 
 @app.route('/')
-def home():
+@app.route('/<string:user>')
+def home(user=None):
+    print(user)
     logout_user()
-    contents = ["profile", "portfolio", "library", "biography", "investment", "contact"]
-    return render_template("index.html", contents=contents)
+    contents = ["profile", "portfolio", "library", "biography", "investment", "contact", "secret"]
+    explanations = {}
+    for content in contents:
+        with open(f"about-explanation/about-{content}", "r", encoding='utf-8') as file:
+            explanations[content] = file.read()
+    return render_template("index.html", contents=contents, user=user, explanations=explanations)
 
 
 @app.route("/profile")
 def profile():
     title = 'profile'
     data = create_dict(title)
-    print(data)
 
     return render_template("contents.html", title=title, data=data, img=False)
 

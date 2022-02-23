@@ -5,6 +5,24 @@ body #carouselExampleInterval .carousel-item {
   height: 100%;
   display: grid;
 }
+body .background-1 {
+  background-color: #333;
+  color: #bbb;
+}
+body .background-2 {
+  background-color: #bbb;
+  color: #333;
+}
+body .container-fluid .about-container {
+  width: 60%;
+  padding: 5em 0 5em 0;
+}
+body .container-fluid .about-container .about-row .about-icon {
+  object-fit: cover;
+  display: block;
+  width: 15em;
+  height: 15em;
+}
 body .title-screens h5 {
   font-size: 3em;
   height: 1.4em;
