@@ -35,7 +35,7 @@ def create_dict(obj):
     def func_for_library():
         return defaultdict(list)
 
-    def func_for_biography_portfolio():
+    def default_dict_dict():
         return defaultdict(dict)
 
     def func_for_profile():
@@ -52,7 +52,7 @@ def create_dict(obj):
             data[d.kind][d.title][d.staff].append((d.id, d.examples))
 
     elif obj == "portfolio":
-        data = defaultdict(func_for_biography_portfolio)
+        data = defaultdict(default_dict_dict)
 
         for d in database:
             data[d.kind][d.title]["id"] = d.id
@@ -70,7 +70,7 @@ def create_dict(obj):
             data[d.kind][d.title].append(one_data)
 
     elif obj == "biography":
-        data = defaultdict(func_for_biography_portfolio)
+        data = defaultdict(default_dict_dict)
 
         for d in database:
             data[d.kind][d.title]["id"] = d.id
@@ -132,10 +132,8 @@ def add(obj, kind, title, staff):
 
             for example in examples:
                 if example:
-                    print(example)
                     new_datum["examples"] = example
                     new_data.append(new_datum.copy())
-            print(new_data)
 
         elif obj == "portfolio":
             new_datum["date"] = request.form["date"]

@@ -49,6 +49,10 @@ $gray7: #ddd;
         -webkit-animation: chartjs-render-animation 0.001s;
         animation: chartjs-render-animation 0.001s;
 
+        background-color: $gray6;
+        border-radius: 0.5em;
+        margin-bottom: 1em;
+
         padding: 1em 2em 2em 3em;
         @media screen and (max-width: 576px) {
           padding: 0;
@@ -67,9 +71,11 @@ $gray7: #ddd;
       }
       th {
         color: $gray6;
+        font-size: 0.9em;
       }
       td {
         color: $gray5;
+        font-size: 0.8em;
       }
     }
   }
