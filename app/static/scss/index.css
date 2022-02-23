@@ -14,14 +14,25 @@ body .background-2 {
   color: #333;
 }
 body .container-fluid .about-container {
-  width: 60%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 5em 0 5em 0;
 }
+body .container-fluid .about-container h1 {
+  margin-bottom: 1em;
+}
 body .container-fluid .about-container .about-row .about-icon {
+  margin: 1em 0 1em 0;
+  width: 15em;
+  margin-left: auto;
+  margin-right: auto;
   object-fit: cover;
   display: block;
-  width: 15em;
   height: 15em;
+}
+body .container-fluid .about-container .about-row .about-content {
+  margin: 1em 0 1em 0;
 }
 body .title-screens h5 {
   font-size: 3em;
