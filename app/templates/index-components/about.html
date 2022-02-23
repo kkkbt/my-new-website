@@ -6,7 +6,7 @@
                     <img src="../static/img/toppage/{{content}}.jpg" class="shadow-lg about-icon rounded-circle">
                 </div>
                 <div class="col-lg-7 col-md-12 about-content">
-                    <h2>{{ content }}</h2>
+                    <h2>{{ content.title() }}</h2>
                     <p>{{ explanations[content] }}</p>
                     {% if content == "secret": %}
                     <a class="btn btn-primary" href="{{ url_for('login_secret') }}" role="button">このページへ行く</a>
