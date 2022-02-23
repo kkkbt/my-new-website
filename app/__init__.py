@@ -4,6 +4,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
+from app.manage_google_sheets import ManageGoogleSheets
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
@@ -17,7 +19,7 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_message = u"Bonvolu ensaluti por uzi tiun paĝon."
-
+manage_google_sheets = ManageGoogleSheets()
 
 from app import view
 from app import database

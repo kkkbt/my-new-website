@@ -1,6 +1,6 @@
 from collections import defaultdict
+from datetime import datetime
 import os
-
 
 import gspread
 
@@ -38,20 +38,38 @@ class ManageGoogleSheets:
         self.profits_date: list = []
         self.profits_value: list = []
         self.profits_ranking: defaultdict = defaultdict(list)
+        now = datetime.now()
+
+        self.start_year = 2018
+        self.current_year = now.year
+        self.current_month = now.month
+        self.years = [year for year in range(self.current_year, self.start_year - 1, -1)]
 
     def get_profits(self):
+
+        if self.profits_date:
+            return
+
+        range_sheet = (self.current_year - self.start_year) * 12 + (self.current_month - 11) + 2
+
         work_sheet = self.sheet.worksheet("Sheet-for-website")
-        profits = work_sheet.get_all_values()
+        profits = work_sheet.get_all_values()[1:range_sheet]
         length_profits = len(profits)
-        for i in range(length_profits // 7):
-            profit = profits[i * (length_profits // 7) + 1]
+        for i in range(0, length_profits, 3):
+            profit = profits[i]
             self.profits_date.append(f"{profit[0]}/{profit[1]}")
-            self.profits_value.append(profit[2])
+            self.profits_value.append(int(profit[2]))
+        print(self.profits_date)
         return
 
     def get_ranking(self):
-        years = [2018, 2019, 2020, 2021, 2022]
-        for year in years:
+
+        if len(self.profits_ranking) == self.current_year - self.start_year + 1:
+            return
+        else:
+            self.profits_ranking = defaultdict(list)
+
+        for year in self.years:
             work_sheet = self.sheet.worksheet(f"{year}-ranking")
             profit_ranking = work_sheet.get_all_values()[1:]
             for p_r in profit_ranking:

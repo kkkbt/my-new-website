@@ -1,5 +1,6 @@
 import ast
 
+import flask
 from werkzeug.security import check_password_hash
 
 from flask import render_template, redirect, url_for, request, flash
@@ -11,7 +12,7 @@ from app.database import UserDatabase
 from app.database_manager import initialize_user_database, create_columns, create_dict, get_current_data, \
     add, edit, delete
 from app.email import send_email
-from app.manage_google_sheets import ManageGoogleSheets
+from app import manage_google_sheets
 
 
 @login_manager.user_loader
@@ -53,10 +54,17 @@ def library():
 
 @app.route("/investment")
 def investment():
-    manage_google_sheets = ManageGoogleSheets()
-    manage_google_sheets.get_profits()
     manage_google_sheets.get_ranking()
     return render_template("investment.html", title='investment', data=manage_google_sheets)
+
+
+@app.route("/get-profits", methods=['GET', 'POST'])
+def get_profits():
+    manage_google_sheets.get_profits()
+    return flask.jsonify({
+        'profits_date': manage_google_sheets.profits_date,
+        'profits_value': manage_google_sheets.profits_value
+    })
 
 
 @app.route("/biography")

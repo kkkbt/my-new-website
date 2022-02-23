@@ -1,5 +1,7 @@
 {% include "header_footer/head.html" %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!--  Link to my css  -->
 <link rel="stylesheet" href="../static/scss/index.css">
 <link rel="stylesheet" href="../static/scss/contents.css">
@@ -33,34 +35,48 @@
                     <!--Graph-->
                     <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1000" height="700"></canvas>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                    <script>
-                        var ctx = document.getElementById("myChart");
-                        var myChart = new Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: [],
-                                datasets: [{
-                                    data: [],
-                                    lineTension: 0,
-                                    backgroundColor: 'transparent',
-                                    borderColor: '#aaa',
-                                    borderWidth: 4,
-                                    pointBackgroundColor: '#aaa'
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            beginAtZero: false
+                    <script type="text/javascript">
+                        const ctx = document.getElementById("myChart");
+
+                        $.ajax({
+                            url: "../get-profits",
+                            type: "POST",
+                            dataType: "json"
+                        })
+                            // Ajaxリクエストが成功した場合
+                            .done(function (data) {
+                                const myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: data.profits_date,
+                                        datasets: [{
+                                            data: data.profits_value,
+                                            lineTension: 0,
+                                            backgroundColor: 'transparent',
+                                            borderColor: '#aaa',
+                                            borderWidth: 4,
+                                            pointBackgroundColor: '#aaa'
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: false
+                                                }
+                                            }]
+                                        },
+                                        legend: {
+                                            display: false,
                                         }
-                                    }]
-                                },
-                                legend: {
-                                    display: false,
-                                }
-                            }
-                        });
+                                    }
+                                });
+
+                            })
+                            // Ajaxリクエストが失敗した場合
+                            .fail(function () {
+                                alert("サイトをリフレッシュしてください。");
+                            });
                     </script>
                 </div>
 
