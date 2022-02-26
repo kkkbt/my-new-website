@@ -108,7 +108,6 @@ def add(obj, kind, title, staff):
     if obj == "user":
         new_datum["name"] = request.form["name"]
         password = generate_password_hash(request.form["password"])
-        print(password)
         new_datum["password"] = password
         new_data.append(new_datum)
     else:

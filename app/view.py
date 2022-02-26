@@ -23,7 +23,6 @@ def load_user(user_id):
 @app.route('/')
 @app.route('/<string:user>')
 def home(user=None):
-    print(user)
     logout_user()
     contents = ["profile", "portfolio", "library", "biography", "investment", "contact", "secret"]
     explanations = {}

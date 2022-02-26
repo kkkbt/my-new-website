@@ -59,7 +59,6 @@ class ManageGoogleSheets:
             profit = profits[i]
             self.profits_date.append(f"{profit[0]}/{profit[1]}")
             self.profits_value.append(int(profit[2]))
-        print(self.profits_date)
         return
 
     def get_ranking(self):

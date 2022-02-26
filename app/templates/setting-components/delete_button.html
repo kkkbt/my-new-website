@@ -1,2 +1,24 @@
 <a href="{{ url_for('setting_delete', obj=database_name, which_db_to_delete=which_db_to_delete) }}"
    class="btn btn-primary delete_button"><span class="align-middle">削除</span></a>
+
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--<button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal"-->
+<!--        data-bs-target="#{{ which_db_to_delete.keys[0] }}_delete_modal">-->
+<!--    削除-->
+<!--</button>-->
+
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal delete-modal" id="{{ which_db_to_delete.keys[0] }}_delete_modal" tabindex="-1"-->
+<!--     aria-labelledby="{{ which_db_to_delete.keys[0] }}_delete_modal_label" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="{{ which_db_to_delete.keys[0] }}_delete_modal_label">Modal title</h5>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <a href="{{ url_for('setting_delete', obj=database_name, which_db_to_delete=which_db_to_delete) }}"-->
+<!--                   class="btn btn-primary delete_button"><span class="align-middle">削除</span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
