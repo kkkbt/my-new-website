@@ -23,9 +23,9 @@
                     {% for data_title in data[data_kind]: %}
                     <nav class="nav flex-column sub-nav">
                         {% if img: %}
-                        <a class="nav-link" href="#title_{{ data[data_kind][data_title]['id'] }}">{{data_title}}</a>
+                        <a class="nav-link" href="#{{ data_kind }}_title_{{ data[data_kind][data_title]['id'] }}">{{data_title}}</a>
                         {% else: %}
-                        <a class="nav-link" href="#title_{{ data_title }}">{{data_title}}</a>
+                        <a class="nav-link" href="#{{ data_kind }}_title_{{ data_title }}">{{data_title}}</a>
                         {% endif %}
                     </nav>
 
