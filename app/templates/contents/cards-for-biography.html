@@ -27,7 +27,7 @@
 
                                 {% for key in data %}
                                 {% if key not in ['img', 'description', 'id', 'link_url', 'link_title']: %}
-                                {% if not {{ data[key] }}: %}
+                                {% if data[key]: %}
                                 <li class="list-group-item"><strong>{{ key }}</strong><br>{{ data[key] }}</li>
                                 {% endif %}
                                 {% endif %}
