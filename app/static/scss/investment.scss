@@ -19,8 +19,9 @@
   }
 }
 
-$h5fontsize: 1px;
-$afontsize: 0.5px;
+$largest-fontsize: 1.5em;
+$smaller-fontsize: 0.9em;
+$smallest-fontsize: 0.8em;
 
 $gray1: #111;
 $gray2: #333;
@@ -71,11 +72,11 @@ $gray7: #ddd;
       }
       th {
         color: $gray6;
-        font-size: 0.9em;
+        font-size: $smaller-fontsize;
       }
       td {
         color: $gray5;
-        font-size: 0.8em;
+        font-size: $smallest-fontsize;
       }
     }
   }

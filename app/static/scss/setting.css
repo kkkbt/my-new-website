@@ -15,9 +15,19 @@ body .container .row .wide_button {
   height: 4em;
   font-size: 1.5em;
 }
-body .container .row .modal .modal-body .accordion .accordion-body .delete_button {
+
+.btn {
+  font-size: 0.8em;
+}
+
+.delete-check-button {
+  font-size: 0.8em;
   width: 100%;
   height: 100%;
+}
+
+.delete-modal .modal-header {
+  background-color: red;
 }
 
 /*# sourceMappingURL=setting.css.map */
