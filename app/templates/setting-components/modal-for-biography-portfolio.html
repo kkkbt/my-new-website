@@ -1,5 +1,5 @@
 <!--START Accordion1 for edit-->
-<div class="accordion" id="{{ database_name }}_accordion">
+<div class="accordion" id="{{ database_name }}___accordion">
     {% for kind in database %}
     <div class="accordion-item">
 
@@ -28,12 +28,12 @@
         <div id="{{ database_name }}_{{ kind }}_collapse1"
              class="accordion-collapse collapse"
              aria-labelledby="{{ database_name }}_{{ kind }}_heading1"
-             data-bs-parent="#{{ database_name }}_accordion">
+             data-bs-parent="#{{ database_name }}___accordion">
             <div class="accordion-body">
 
 
                 <!--START Accordion2 for edit-->
-                <div class="accordion" id="{{ database_name }}_{{ kind }}_accordion">
+                <div class="accordion" id="{{ database_name }}_{{ kind }}__accordion">
 
                     {% for title in database[kind] %}
                     {% with data = database[kind][title] %}
@@ -64,7 +64,7 @@
                         <div id="{{ database_name }}_{{ data['id'] }}_collapse1"
                              class="accordion-collapse collapse"
                              aria-labelledby="{{ database_name }}_{{ data['id'] }}_heading1"
-                             data-bs-parent="#{{ database_name }}_{{ kind }}_accordion">
+                             data-bs-parent="#{{ database_name }}_{{ kind }}__accordion">
                             <div class="accordion-body">
                                 <form action="{{ url_for('setting_edit', obj=database_name, id=data['id']) }}"
                                       method="POST">
@@ -85,37 +85,15 @@
                     {% endwith %}
                     {% endfor %}
                     <!--START Add-->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"
-                            id="{{ database_name }}_{{ kind.split()[0] }}_add_heading1">
-                            <button class="accordion-button collapsed btn-primary" type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#{{ database_name }}_{{ kind.split()[0] }}_add_collapse1"
-                                    aria-expanded="False"
-                                    aria-controls="{{ database_name }}_{{ kind.split()[0] }}_add_collapse1">
-                                Add
-                            </button>
-                        </h2>
+                    {% with columns=columns,
+                    columns_not_included=['id', 'kind'],
+                    database_name=database_name,
+                    add_kind=kind,
+                    add_title=''
+                    %}
+                    {% include "setting-components/add.html" %}
+                    {% endwith %}
 
-                        <div id="{{ database_name }}_{{ kind.split()[0] }}_add_collapse1"
-                             class="accordion-collapse collapse"
-                             aria-labelledby="{{ database_name }}_{{ kind }}_add_heading1"
-                             data-bs-parent="#{{ database_name }}_{{ kind }}_accordion">
-                            <div class="accordion-body">
-                                <form action="{{ url_for('setting_add', obj=database_name, kind=kind) }}"
-                                      method="POST">
-
-                                    {% with columns=columns, columns_not_included=['id', 'kind'] %}
-                                    {% include "setting-components/add-form.html" %}
-                                    {% endwith %}
-
-
-                                </form>
-
-
-                            </div>
-                        </div>
-                    </div>
                     <!--END Add-->
                 </div>
                 <!--END Accordion2 for edit-->
@@ -126,36 +104,14 @@
     {% endfor %}
 
     <!--START Add-->
-    <div class="accordion-item">
-        <h2 class="accordion-header"
-            id="{{ database_name }}_add_heading1">
-            <button class="accordion-button collapsed btn-primary" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#{{ database_name }}_add_collapse1"
-                    aria-expanded="False"
-                    aria-controls="{{ database_name }}_add_collapse1">
-                Add
-            </button>
-        </h2>
-
-        <div id="{{ database_name }}_add_collapse1"
-             class="accordion-collapse collapse"
-             aria-labelledby="{{ database_name }}_add_heading1"
-             data-bs-parent="#{{ database_name }}_accordion">
-            <div class="accordion-body">
-                <form action="{{ url_for('setting_add', obj=database_name) }}"
-                      method="POST">
-                    {% with columns=columns, columns_not_included=['id'] %}
-                    {% include "setting-components/add-form.html" %}
-                    {% endwith %}
-
-
-                </form>
-
-
-            </div>
-        </div>
-    </div>
+    {% with columns=columns,
+    columns_not_included=['id'],
+    database_name=database_name,
+    add_kind="",
+    add_title=''
+    %}
+    {% include "setting-components/add.html" %}
+    {% endwith %}
     <!--END Add-->
 
 </div>

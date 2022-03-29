@@ -1,5 +1,5 @@
 <!--START Accordion1 for edit-->
-<div class="accordion" id="{{ database_name }}_accordion">
+<div class="accordion" id="{{ database_name }}___accordion">
     {% for name in database %}
     <div class="accordion-item">
 
@@ -37,7 +37,7 @@
         <div id="{{ database_name }}_{{ name }}_collapse1"
              class="accordion-collapse collapse"
              aria-labelledby="{{ database_name }}_{{ name }}_heading1"
-             data-bs-parent="#{{ database_name }}_accordion">
+             data-bs-parent="#{{ database_name }}___accordion">
             <div class="accordion-body">
                 <form action="{{ url_for('setting_edit', obj=database_name, id=database[name], name=name) }}"
                       method="POST">
@@ -57,33 +57,18 @@
     {% endfor %}
 
     <!--START Add-->
-    <div class="accordion-item">
-        <h2 class="accordion-header"
-            id="{{ database_name }}_add_heading1">
-            <button class="accordion-button collapsed btn-primary" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#{{ database_name }}_add_collapse1"
-                    aria-expanded="False"
-                    aria-controls="{{ database_name }}_add_collapse1">
-                Add
-            </button>
-        </h2>
 
-        <div id="{{ database_name }}_add_collapse1"
-             class="accordion-collapse collapse"
-             aria-labelledby="{{ database_name }}_add_heading1"
-             data-bs-parent="#{{ database_name }}_accordion">
-            <div class="accordion-body">
-                <form action="{{ url_for('setting_add', obj=database_name) }}"
-                      method="POST">
-                    {% with columns=columns, columns_not_included=['id'] %}
-                    {% include "setting-components/add-form.html" %}
-                    {% endwith %}
-                </form>
-            </div>
-        </div>
-    </div>
+    {% with columns=columns,
+    columns_not_included=['id'],
+    database_name=database_name,
+    add_kind="",
+    add_title=''
+    %}
+    {% include "setting-components/add.html" %}
+    {% endwith %}
+
     <!--END Add-->
+
 
 </div>
 <!--END Accordion1 for edit-->

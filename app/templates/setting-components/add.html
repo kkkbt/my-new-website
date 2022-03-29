@@ -1,0 +1,39 @@
+<!--START Add-->
+<div class="accordion-item">
+    <h2 class="accordion-header"
+        id="{{ database_name }}_{{ add_kind.split()[0] }}_{{ add_title.split()[0] }}_add_heading">
+        <button class="accordion-button collapsed btn-primary" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#{{ database_name }}_{{ add_kind.split()[0] }}_{{ add_title.split()[0] }}_add_collapse"
+                aria-expanded="False"
+                aria-controls="{{ database_name }}_{{ add_kind.split()[0] }}_{{ add_title.split()[0] }}_add_collapse">
+            Add
+        </button>
+    </h2>
+
+    <div id="{{ database_name }}_{{ add_kind.split()[0] }}_{{ add_title.split()[0] }}_add_collapse"
+         class="accordion-collapse collapse"
+         aria-labelledby="{{ database_name }}_{{ add_kind }}_{{ add_title.split()[0] }}_add_heading"
+         data-bs-parent="#{{ database_name }}_{{ add_kind }}_{{ add_title.split()[0] }}_accordion">
+        <div class="accordion-body">
+            {% if not add_kind: %}
+            <form action="{{ url_for('setting_add', obj=database_name) }}"
+                  method="POST">
+                {% elif not add_title: %}
+                <form action="{{ url_for('setting_add', obj=database_name, kind=add_kind) }}"
+                      method="POST">
+                    {% else: %}
+                    <form action="{{ url_for('setting_add', obj=database_name, kind=add_kind, title=add_title) }}"
+                          method="POST">
+                        {% endif %}
+
+                        {% with columns=columns, columns_not_included=columns_not_included %}
+                        {% include "setting-components/add-form.html" %}
+                        {% endwith %}
+                    </form>
+
+
+        </div>
+    </div>
+</div>
+<!--END Add-->
