@@ -215,11 +215,8 @@ def edit(obj, db_id_to_edit, name):
 
 
 def delete(obj, which_db_to_delete):
-    print(which_db_to_delete)
     dbs_to_delete = databases[obj].query.filter_by(**which_db_to_delete).all()
 
-    print(len(dbs_to_delete))
-
-    # for db_to_delete in dbs_to_delete:
-    #     db.session.delete(db_to_delete)
-    # db.session.commit()
+    for db_to_delete in dbs_to_delete:
+        db.session.delete(db_to_delete)
+    db.session.commit()
