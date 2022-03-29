@@ -1,16 +1,16 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary delete-check-button" data-bs-dismiss="edit-modal" data-bs-toggle="modal"
-        data-bs-target="#{{ which_db_to_delete.keys[0] }}_delete_modal">
+        data-bs-target="#{{ database_name }}_{{ which_db_to_delete[type] }}_delete_modal">
     削除
 </button>
 
 <!-- Modal -->
-<div class="modal fade delete-modal primary" id="{{ which_db_to_delete.keys[0] }}_delete_modal" tabindex="-1"
-     aria-labelledby="{{ which_db_to_delete.keys[0] }}_delete_modal_label">
+<div class="modal fade delete-modal primary" id="{{ database_name }}_{{ which_db_to_delete[type] }}_delete_modal" tabindex="-1"
+     aria-labelledby="{{ database_name }}_{{ which_db_to_delete[type] }}_delete_modal_label">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="{{ which_db_to_delete.keys[0] }}_delete_modal_label">注意</h5>
+                <h5 class="modal-title" id="{{ database_name }}_{{ which_db_to_delete[type] }}_delete_modal_label">注意</h5>
             </div>
             <div class="modal-body">
                 <p>本当に<strong>削除</strong>してもよろしいですか？</p>

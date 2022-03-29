@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col-3">
-                {% with database_name=database_name, which_db_to_delete={"kind": kind} %}
+                {% with database_name=database_name, type="kind",which_db_to_delete={"kind": kind} %}
                 {% include "setting-components/delete_button.html" %}
                 {% endwith %}
 
@@ -41,7 +41,7 @@
                     <div class="accordion-item">
                         <div class="row">
                             <div class="col-3">
-                                {% with database_name=database_name, which_db_to_delete={"id":
+                                {% with database_name=database_name,type="id", which_db_to_delete={"id":
                                 data['id']} %}
                                 {% include "setting-components/delete_button.html" %}
                                 {% endwith %}
