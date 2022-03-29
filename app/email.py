@@ -9,7 +9,7 @@ jp='iso-2022-jp'
 
 
 def send_email(nickname, email_subject, email_content):
-    raw_message = f"{nickname}です。\n\nメッセージ\n{email_content}"
+    raw_message = f"{nickname} です。\n\n---------- メッセージ ----------\n{email_content}"
     msg = MIMEText(raw_message.encode(jp), 'plain', jp)
     msg["Subject"] = email_subject
     msg['From'] = WEBSITE_GMAIL

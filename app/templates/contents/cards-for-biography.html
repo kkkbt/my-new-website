@@ -6,7 +6,7 @@
         <img id="{{ data_kind }}_title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/biography/{{ data['img'] }}"
              alt="">
         {% else: %}
-        <img id={{ data_kind }}_"title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/no-img.jpg">
+        <img id="{{ data_kind }}_title_{{ data['id'] }}" class="card-img-top rounded" src="../static/img/no-img.jpg">
              {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{ data_title.title() }}</h5>

@@ -32,6 +32,8 @@
             <div class="content">
                 <div class="card-body">
                     <h1 id="profit">利益</h1>
+                    <p>※ 四半期ごとにグラフを更新します。</p>
+
                     <!--Graph-->
                     <div class="graph">
                         <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1000" height="800"></canvas>
@@ -79,13 +81,14 @@
                         </script>
                     </div>
 
-                </div>
 
-                {% for year in data.profits_ranking: %}
+                </div>
 
                 <div class="card-body card-table">
                     <h1 id="profit-ranking">利益ランキング</h1>
-                    <h2 id="{{ year }}">{{ year }}</h2>
+                {% for year in data.profits_ranking: %}
+
+                    <h2 id="{{ year }}">-- {{ year }} --</h2>
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
@@ -107,8 +110,8 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                </div>
                 {% endfor %}
+                </div>
 
             </div>
         </div>

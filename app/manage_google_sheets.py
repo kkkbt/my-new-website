@@ -43,6 +43,7 @@ class ManageGoogleSheets:
         self.start_year = 2018
         self.current_year = now.year
         self.current_month = now.month
+        print(self.current_month, self.current_year)
         self.years = [year for year in range(self.current_year, self.start_year - 1, -1)]
 
     def get_profits(self):
@@ -64,6 +65,14 @@ class ManageGoogleSheets:
     def get_ranking(self):
 
         if len(self.profits_ranking) == self.current_year - self.start_year + 1:
+            self.profits_ranking[self.current_year] = []
+
+            work_sheet = self.sheet.worksheet(f"{self.current_year}-ranking")
+            profit_ranking = work_sheet.get_all_values()[1:]
+            for p_r in profit_ranking:
+                if p_r[0][0] == "#":
+                    break
+                self.profits_ranking[self.current_year].append(p_r)
             return
         else:
             self.profits_ranking = defaultdict(list)

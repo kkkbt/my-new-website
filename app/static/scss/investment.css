@@ -24,7 +24,6 @@
   animation: chartjs-render-animation 0.001s;
   background-color: #bbb;
   border-radius: 0.5em;
-  margin-bottom: 1em;
   padding: 1em 2em 2em 3em;
 }
 @media screen and (max-width: 576px) {
@@ -32,12 +31,16 @@
     padding: 0;
   }
 }
+.container .content .card-body p {
+  color: #bbb;
+}
 .container .content .card-table {
   padding-bottom: 1em;
   margin-bottom: 1em;
 }
 .container .content .card-table h2 {
   color: #ddd;
+  padding-top: 1em;
 }
 .container .content .card-table th {
   color: #bbb;
