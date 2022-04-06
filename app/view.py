@@ -104,12 +104,13 @@ def login_setting():
         user = UserDatabase.query.filter_by(name=name).first()
 
         password = request.form.get('password')
-        hashed_password = user.password
         if not user:
-            flash("That email does not exist, please try again.")
+            flash("入力された名前のアカウントが存在しません。")
             return redirect(url_for('login_setting'))
+
+        hashed_password = user.password
         if not check_password_hash(hashed_password, password):
-            flash("login失敗")
+            flash("パスワードが間違っています。")
 
             return redirect(url_for('login_setting'))
 
@@ -173,12 +174,13 @@ def login_secret():
         user = UserDatabase.query.filter_by(name=name).first()
 
         password = request.form.get('password')
-        hashed_password = user.password
         if not user:
-            flash("That email does not exist, please try again.")
+            flash("入力された名前のアカウントが存在しません。")
             return redirect(url_for('login_secret'))
+
+        hashed_password = user.password
         if not check_password_hash(hashed_password, password):
-            flash("login失敗")
+            flash("パスワードが間違っています。")
 
             return redirect(url_for('login_secret'))
 
