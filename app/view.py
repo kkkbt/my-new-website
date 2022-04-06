@@ -184,7 +184,7 @@ def login_secret():
 
         else:
             login_user(user)
-            return redirect(url_for('setting'))
+            return redirect(url_for('secret'))
     explantion = "ユーザー専用ページにログインします。"
     return render_template("login.html", title='login', explanation=explantion)
 
